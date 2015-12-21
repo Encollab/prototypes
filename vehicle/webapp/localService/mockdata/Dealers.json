@@ -1,0 +1,26 @@
+[{
+        "DealerId": "9000",
+        "Name": "Sydney Dealer",
+        "Street": "12 George Street",
+        "City": "Sydney",
+        "State": "NSW",
+        "PostCode": "2000",
+        "Phone": "(02) 9000-1234"
+    }, {
+        "DealerId": "9001",
+        "Name": "Mebourne Dealer",
+        "Street": "13 Collins Street",
+        "City": "Mebourne",
+        "State": "Vic",
+        "PostCode": "3000",
+        "Phone": "(03) 8000-1234"
+    }, {
+        "DealerId": "9002",
+        "Name": "Brisbane Dealer",
+        "Street": "14 Fleet Street",
+        "City": "Brisbane",
+        "State": "Qld",
+        "PostCode": "4000",
+        "Phone": "(04) 7000-1234"
+    }
+]

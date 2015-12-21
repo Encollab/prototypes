@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+        <edmx:DataServices m:DataServiceVersion="2.0" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+            <Schema Namespace="Vehicle_Data" xml:lang="en" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+                <EntityType Name="Vehicle" sap:content-version="1" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+                    <Key>
+                        <PropertyRef Name="VIN" />
+                    </Key>
+                    <Property Name="VIN" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Object ID" sap:creatable="false" sap:updatable="false" />
+                    <Property Name="Model" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Model" sap:creatable="false" sap:updatable="false" />
+                    <Property Name="VehicleNo" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Vehicle No" sap:creatable="false" sap:updatable="false" />
+                    <Property Name="PrimaryStatus" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Primary Status" sap:creatable="false" sap:updatable="false" />
+                    <Property Name="SecondaryStatus" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Secondary Status" sap:creatable="false" sap:updatable="false" />
+                    <Property Name="Registration" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Rego" sap:creatable="false" sap:updatable="false" />
+                    <NavigationProperty Name="Dealer" Relationship="Vehicle_Data.FK_Vehicle_Dealer" FromRole="Vehicles" ToRole="Dealers" sap:label="Dealer" />
+                    <NavigationProperty Name="Configurations" Relationship="Vehicle_Data.FK_Vehicle_Configurations" FromRole="Vehicles" ToRole="Configurations" />
+                </EntityType>
+                <EntityType Name="Configuration" sap:content-version="1" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+                    <Key>
+                        <PropertyRef Name="Category" />
+                        <PropertyRef Name="VIN" />
+                    </Key>
+                    <Property Name="Category" Type="Edm.String" Nullable="false" MaxLength="40" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:label="Category" />
+                    <Property Name="VIN" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="VIN" sap:creatable="false" sap:updatable="false" />
+                    <Property Name="Description" Type="Edm.String" Nullable="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:label="Description" />
+                    <Property Name="Value" Type="Edm.String" Nullable="false" MaxLength="40" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:label="Value" />
+                    <NavigationProperty Name="Vehicles" Relationship="Vehicle_Data.FK_Vehicle_Configurations" FromRole="Configurations" ToRole="Vehicles" />
+                </EntityType>
+                <EntityType Name="Dealer" sap:label="Dealer" sap:content-version="1" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+                    <Key>
+                        <PropertyRef Name="DealerId" />
+                    </Key>
+                    <Property Name="DealerId" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Customer" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                    <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="40" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                    <Property Name="Street" Type="Edm.String" Nullable="false" MaxLength="40" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                    <Property Name="City" Type="Edm.String" Nullable="false" MaxLength="40" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                    <Property Name="State" Type="Edm.String" Nullable="false" MaxLength="10" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                    <Property Name="Phone" Type="Edm.String" Nullable="false" MaxLength="15" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                </EntityType>
+                <Association Name="FK_Vehicle_Dealer">
+                    <End Type="Vehicle_Data.Vehicle" Multiplicity="1" Role="Vehicles" />
+                    <End Type="Vehicle_Data.Dealer" Multiplicity="0..1" Role="Dealers" />
+                </Association>
+                <Association Name="FK_Vehicle_Configurations">
+                    <End Role="Configurations" Type="Vehicle_Data.Configuration" Multiplicity="*" />
+                    <End Role="Vehicles" Type="Vehicle_Data.Vehicle" Multiplicity="1" />
+                    <ReferentialConstraint>
+                        <Principal Role="Vehicles">
+                            <PropertyRef Name="VIN" />
+                        </Principal>
+                        <Dependent Role="Configurations">
+                            <PropertyRef Name="VIN" />
+                        </Dependent>
+                    </ReferentialConstraint>
+                </Association>
+                <EntityContainer Name="Vehicle_Data_ENTITIES" m:IsDefaultEntityContainer="true">
+                    <EntitySet Name="Vehicles" EntityType="Vehicle_Data.Vehicle" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1" xmlns:sap="http://www.sap.com/Protocols/SAPData" />
+                    <EntitySet Name="Configurations" EntityType="Vehicle_Data.Configuration" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1" xmlns:sap="http://www.sap.com/Protocols/SAPData" />
+                    <EntitySet Name="Dealers" EntityType="Vehicle_Data.Dealer" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1" xmlns:sap="http://www.sap.com/Protocols/SAPData" />
+                    <AssociationSet Name="Vehicle_Data.FK_Vehicle_Configurations" Association="Vehicle_Data.FK_Vehicle_Configurations">
+                        <End Role="Configurations" EntitySet="Configurations" />
+                        <End Role="Vehicles" EntitySet="Vehicles" />
+                    </AssociationSet>
+                    <AssociationSet Name="Vehicle_Data.FK_Vehicle_Dealers" Association="Vehicle_Data.FK_Vehicle_Dealers">
+                        <End EntitySet="Vehicles" Role="Vehicles" />
+                        <End EntitySet="Dealers" Role="Dealers" />
+                    </AssociationSet>
+                </EntityContainer>
+            </Schema>
+        </edmx:DataServices>
+    </edmx:Edmx>
