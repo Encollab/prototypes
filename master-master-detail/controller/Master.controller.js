@@ -1,18 +1,18 @@
 /*global history */
 sap.ui.define([
-		"encollab/dp/masterdetail/controller/BaseController",
+		"encollab/dp/mastermasterdetail/controller/BaseController",
 		"sap/ui/model/json/JSONModel",
 		"sap/ui/model/Filter",
 		"sap/ui/model/FilterOperator",
 		"sap/m/GroupHeaderListItem",
 		"sap/ui/Device",
-		"encollab/dp/masterdetail/model/formatter",
-		"encollab/dp/masterdetail/model/grouper",
-		"encollab/dp/masterdetail/model/GroupSortState"
+		"encollab/dp/mastermasterdetail/model/formatter",
+		"encollab/dp/mastermasterdetail/model/grouper",
+		"encollab/dp/mastermasterdetail/model/GroupSortState"
 	], function (BaseController, JSONModel, Filter, FilterOperator, GroupHeaderListItem, Device, formatter, grouper, GroupSortState) {
 		"use strict";
 
-		return BaseController.extend("encollab.dp.masterdetail.controller.Master", {
+		return BaseController.extend("encollab.dp.mastermasterdetail.controller.Master", {
 
 			formatter: formatter,
 
@@ -150,7 +150,7 @@ sap.ui.define([
 			 */
 			onOpenViewSettings : function () {
 				if (!this._oViewSettingsDialog) {
-					this._oViewSettingsDialog = sap.ui.xmlfragment("encollab.dp.masterdetail.view.ViewSettingsDialog", this);
+					this._oViewSettingsDialog = sap.ui.xmlfragment("encollab.dp.mastermasterdetail.view.ViewSettingsDialog", this);
 					this.getView().addDependent(this._oViewSettingsDialog);
 					// forward compact/cozy style into Dialog
 					this._oViewSettingsDialog.addStyleClass(this.getOwnerComponent().getContentDensityClass());
@@ -256,8 +256,8 @@ sap.ui.define([
 						if (mParams.list.getMode() === "None") {
 							return;
 						}
-						var sObjectId = mParams.firstListitem.getBindingContext().getProperty("ObjectID");
-						this.getRouter().navTo("object", {objectId : sObjectId}, true);
+						//var sObjectId = mParams.firstListitem.getBindingContext().getProperty("ObjectID");
+						//this.getRouter().navTo("object", {objectId : sObjectId}, true);
 					}.bind(this),
 					function (mParams) {
 						if (mParams.error) {
@@ -276,8 +276,8 @@ sap.ui.define([
 			 */
 			_showDetail : function (oItem) {
 				var bReplace = !Device.system.phone;
-				this.getRouter().navTo("object", {
-					objectId : oItem.getBindingContext().getProperty("TerritoryID")
+				this.getRouter().navTo("master2", {
+					objectId : oItem.getBindingContext().getProperty("RegionID")
 				}, bReplace);
 			},
 

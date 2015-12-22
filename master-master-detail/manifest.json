@@ -3,7 +3,7 @@
 
 	"sap.app": {
 		"_version": "1.2.0",
-		"id": "encollab.dp.masterdetail",
+		"id": "encollab.dp.mastermasterdetail",
 		"type": "application",
 		"i18n": "i18n/i18n.properties",
 		"title": "{{appTitle}}",
@@ -49,7 +49,7 @@
 	"sap.ui5": {
 		"_version": "1.1.0",
 		"rootView": {
-			"viewName": "encollab.dp.masterdetail.view.App",
+			"viewName": "encollab.dp.mastermasterdetail.view.App",
 			"type": "XML",
 			"id": "app"
 		},
@@ -72,7 +72,7 @@
 			"i18n": {
 				"type": "sap.ui.model.resource.ResourceModel",
 				"settings": {
-					"bundleName": "encollab.dp.masterdetail.i18n.i18n"
+					"bundleName": "encollab.dp.mastermasterdetail.i18n.i18n"
 				}
 			},
 			"" : {
@@ -89,7 +89,7 @@
 			"config": {
 				"routerClass": "sap.m.routing.Router",
 				"viewType": "XML",
-				"viewPath": "encollab.dp.masterdetail.view",
+				"viewPath": "encollab.dp.mastermasterdetail.view",
 				"controlId": "idAppControl",
 				"controlAggregation": "detailPages",
 				"bypassed": {
@@ -102,12 +102,17 @@
 				{
 					"pattern": "",
 					"name": "master",
-					"target": ["object", "master"]
+					"target": ["detailNoObjectsAvailable", "master"]
 				},
 				{
-					"pattern": "Objects/{objectId}",
+					"pattern": "r/{objectId}",
+					"name": "master2",
+					"target": ["detailNoObjectsAvailable", "master2"]
+				},
+				{
+					"pattern": "t/{objectId}",
 					"name": "object",
-					"target": ["master", "object"]
+					"target": ["object", "master2"]
 				}
 			],
 
@@ -116,6 +121,12 @@
 					"viewName": "Master",
 					"viewLevel": 1,
 					"viewId": "master",
+					"controlAggregation": "masterPages"
+				},
+				"master2": {
+					"viewName": "Master2",
+					"viewLevel": 1,
+					"viewId": "master2",
 					"controlAggregation": "masterPages"
 				},
 				"object": {

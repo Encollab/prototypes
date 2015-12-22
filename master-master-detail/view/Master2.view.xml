@@ -1,5 +1,5 @@
 <mvc:View
-		controllerName="encollab.dp.masterdetail.controller.Master"
+		controllerName="encollab.dp.mastermasterdetail.controller.Master2"
 		xmlns:mvc="sap.ui.core.mvc"
 		xmlns:core="sap.ui.core"
 		xmlns="sap.m"
@@ -33,9 +33,9 @@
 			<List
 					id="list"
 					items="{
-						path: '/Territories',
+						path: 'Territories',
 						sorter: {
-							path: 'TerritoryID',
+							path: 'RegionID',
 							descending: false
 							},
 						groupHeaderFactory: '.createGroupHeader'
@@ -62,6 +62,7 @@
 					<ObjectListItem
 							type="{= ${device>/system/phone} ? 'Active' : 'Inactive'}"
 							press="onSelectionChange"
+							intro="Region {RegionID}"
 							title="{TerritoryDescription}"
 							number="{TerritoryID}">
 					</ObjectListItem>
