@@ -102,12 +102,7 @@
 				{
 					"pattern": "",
 					"name": "master",
-					"target": ["detailNoObjectsAvailable", "master"]
-				},
-				{
-					"pattern": "Region/{RegionID}",
-					"name": "master2",
-					"target": ["object", "master2"]
+					"target": ["object", "master"]
 				},
 				{
 					"pattern": "Objects/{objectId}",
@@ -121,12 +116,6 @@
 					"viewName": "Master",
 					"viewLevel": 1,
 					"viewId": "master",
-					"controlAggregation": "masterPages"
-				},
-				"master2": {
-					"viewName": "Master2",
-					"viewLevel": 1,
-					"viewId": "master2",
 					"controlAggregation": "masterPages"
 				},
 				"object": {

@@ -256,8 +256,8 @@ sap.ui.define([
 						if (mParams.list.getMode() === "None") {
 							return;
 						}
-						//var sObjectId = mParams.firstListitem.getBindingContext().getProperty("RegionID");
-						//this.getRouter().navTo("object", {objectId : sObjectId}, true);
+						var sObjectId = mParams.firstListitem.getBindingContext().getProperty("ObjectID");
+						this.getRouter().navTo("object", {objectId : sObjectId}, true);
 					}.bind(this),
 					function (mParams) {
 						if (mParams.error) {
@@ -276,8 +276,8 @@ sap.ui.define([
 			 */
 			_showDetail : function (oItem) {
 				var bReplace = !Device.system.phone;
-				this.getRouter().navTo("master2", {
-					RegionID : oItem.getBindingContext().getProperty("RegionID")
+				this.getRouter().navTo("object", {
+					objectId : oItem.getBindingContext().getProperty("ObjectID")
 				}, bReplace);
 			},
 
@@ -331,6 +331,8 @@ sap.ui.define([
 				oViewModel.setProperty("/isFilterBarVisible", (this._oListFilterState.aFilter.length > 0));
 				oViewModel.setProperty("/filterBarLabel", this.getResourceBundle().getText("masterFilterBarText", [sFilterBarText]));
 			}
+
 		});
+
 	}
 );

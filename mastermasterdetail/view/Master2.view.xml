@@ -1,0 +1,113 @@
+<mvc:View
+		controllerName="encollab.dp.masterdetail.controller.Master2"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns:core="sap.ui.core"
+		xmlns="sap.m"
+		xmlns:semantic="sap.m.semantic">
+
+	<semantic:MasterPage
+			id="page"
+			title="{master2View>/title}"
+			navButtonPress="onNavBack"
+			showNavButton="true">
+		<semantic:subHeader>
+			<Bar id="headerBar">
+				<contentMiddle>
+					<SearchField
+							id="searchField"
+							showRefreshButton="{= !${device>/support/touch} }"
+							tooltip="{i18n>masterSearchTooltip}"
+							width="100%"
+							search="onSearch">
+					</SearchField>
+				</contentMiddle>
+			</Bar>
+		</semantic:subHeader>
+
+		<semantic:content>
+			<PullToRefresh
+					id="pullToRefresh"
+					visible="{device>/support/touch}"
+					refresh="onRefresh" />
+			<!-- For client side filtering add this to the items attribute:  parameters: {operationMode: 'Client'}}" -->
+			<List
+					id="list"
+					items="{
+						path: '/Territories',
+						sorter: {
+							path: 'TerritoryID',
+							descending: false
+							},
+						groupHeaderFactory: '.createGroupHeader'
+					}"
+					busyIndicatorDelay="{master2View>/delay}"
+					noDataText="{master2View>/noDataText}"
+					mode="{= ${device>/system/phone} ? 'None' : 'SingleSelectMaster'}"
+					growing="true"
+					growingScrollToLoad="true"
+					updateFinished="onUpdateFinished"
+					selectionChange="onSelectionChange">
+				<infoToolbar>
+					<Toolbar
+							active="true"
+							id="filterBar"
+							visible="{master2View>/isFilterBarVisible}"
+							press="onOpenViewSettings">
+						<Title
+								id="filterBarLabel"
+								text="{master2View>/filterBarLabel}" />
+					</Toolbar>
+				</infoToolbar>
+				<items>
+					<ObjectListItem
+							type="{= ${device>/system/phone} ? 'Active' : 'Inactive'}"
+							press="onSelectionChange"
+							title="{TerritoryDescription}"
+							intro="Region {RegionID}"
+							number="{TerritoryID}">
+					</ObjectListItem>
+				</items>
+			</List>
+		</semantic:content>
+
+		<semantic:sort>
+			<semantic:SortSelect
+					id="sort"
+					selectedKey="{master2View>/sortBy}"
+					change="onSort">
+				<core:Item
+						id="masterSort1"
+						key="Name"
+						text="{i18n>masterSort1}"/>
+				<core:Item
+						id="masterSort2"
+						key="UnitNumber"
+						text="{i18n>masterSort2}"/>
+			</semantic:SortSelect>
+		</semantic:sort>
+
+		<semantic:filter>
+			<semantic:FilterAction
+					id="filter"
+					press="onOpenViewSettings" />
+		</semantic:filter>
+
+		<semantic:group>
+			<semantic:GroupSelect
+					id="group"
+					selectedKey="{master2View>/groupBy}"
+					change="onGroup">
+				<core:Item
+						id="masterGroupNone"
+						key="None"
+						text="{i18n>masterGroupNone}"/>
+				<core:Item
+						id="masterGroup1"
+						key="UnitNumber"
+						text="{i18n>masterGroup1}"/>
+			</semantic:GroupSelect>
+		</semantic:group>
+
+	</semantic:MasterPage>
+
+</mvc:View>

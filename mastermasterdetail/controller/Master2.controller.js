@@ -12,7 +12,7 @@ sap.ui.define([
 	], function (BaseController, JSONModel, Filter, FilterOperator, GroupHeaderListItem, Device, formatter, grouper, GroupSortState) {
 		"use strict";
 
-		return BaseController.extend("encollab.dp.masterdetail.controller.Master", {
+		return BaseController.extend("encollab.dp.masterdetail.controller.Master2", {
 
 			formatter: formatter,
 
@@ -42,7 +42,7 @@ sap.ui.define([
 					aSearch : []
 				};
 
-				this.setModel(oViewModel, "masterView");
+				this.setModel(oViewModel, "master2View");
 				// Make sure, busy indication is showing immediately so there is no
 				// break after the busy indication for loading the view's meta data is
 				// ended (see promise 'oWhenMetadataIsLoaded' in AppController)
@@ -57,7 +57,7 @@ sap.ui.define([
 					}.bind(this)
 				});
 
-				this.getRouter().getRoute("master").attachPatternMatched(this._onMasterMatched, this);
+				this.getRouter().getRoute("master2").attachPatternMatched(this._onMasterMatched, this);
 				this.getRouter().attachBypassed(this.onBypassed, this);
 			},
 
@@ -237,8 +237,8 @@ sap.ui.define([
 					isFilterBarVisible: false,
 					filterBarLabel: "",
 					delay: 0,
-					title: this.getResourceBundle().getText("masterTitleCount", [0]),
-					noDataText: this.getResourceBundle().getText("masterListNoDataText"),
+					title: this.getResourceBundle().getText("master2TitleCount", [0]),
+					noDataText: this.getResourceBundle().getText("master2ListNoDataText"),
 					sortBy: "Name",
 					groupBy: "None"
 				});
@@ -256,7 +256,7 @@ sap.ui.define([
 						if (mParams.list.getMode() === "None") {
 							return;
 						}
-						//var sObjectId = mParams.firstListitem.getBindingContext().getProperty("RegionID");
+						//var sObjectId = mParams.firstListitem.getBindingContext().getProperty("ObjectID");
 						//this.getRouter().navTo("object", {objectId : sObjectId}, true);
 					}.bind(this),
 					function (mParams) {
@@ -276,8 +276,8 @@ sap.ui.define([
 			 */
 			_showDetail : function (oItem) {
 				var bReplace = !Device.system.phone;
-				this.getRouter().navTo("master2", {
-					RegionID : oItem.getBindingContext().getProperty("RegionID")
+				this.getRouter().navTo("object", {
+					objectId : oItem.getBindingContext().getProperty("ObjectID")
 				}, bReplace);
 			},
 
@@ -290,8 +290,8 @@ sap.ui.define([
 				var sTitle;
 				// only update the counter if the length is final
 				if (this._oList.getBinding("items").isLengthFinal()) {
-					sTitle = this.getResourceBundle().getText("masterTitleCount", [iTotalItems]);
-					this.getModel("masterView").setProperty("/title", sTitle);
+					sTitle = this.getResourceBundle().getText("master2TitleCount", [iTotalItems]);
+					this.getModel("master2View").setProperty("/title", sTitle);
 				}
 			},
 
@@ -301,14 +301,14 @@ sap.ui.define([
 			 */
 			_applyFilterSearch : function () {
 				var aFilters = this._oListFilterState.aSearch.concat(this._oListFilterState.aFilter),
-					oViewModel = this.getModel("masterView");
+					oViewModel = this.getModel("master2View");
 				this._oList.getBinding("items").filter(aFilters, "Application");
 				// changes the noDataText of the list in case there are no filter results
 				if (aFilters.length !== 0) {
-					oViewModel.setProperty("/noDataText", this.getResourceBundle().getText("masterListNoDataWithFilterOrSearchText"));
+					oViewModel.setProperty("/noDataText", this.getResourceBundle().getText("master2ListNoDataWithFilterOrSearchText"));
 				} else if (this._oListFilterState.aSearch.length > 0) {
 					// only reset the no data text to default when no new search was triggered
-					oViewModel.setProperty("/noDataText", this.getResourceBundle().getText("masterListNoDataText"));
+					oViewModel.setProperty("/noDataText", this.getResourceBundle().getText("master2ListNoDataText"));
 				}
 			},
 
@@ -327,10 +327,12 @@ sap.ui.define([
 			 * @private
 			 */
 			_updateFilterBar : function (sFilterBarText) {
-				var oViewModel = this.getModel("masterView");
+				var oViewModel = this.getModel("master2View");
 				oViewModel.setProperty("/isFilterBarVisible", (this._oListFilterState.aFilter.length > 0));
-				oViewModel.setProperty("/filterBarLabel", this.getResourceBundle().getText("masterFilterBarText", [sFilterBarText]));
+				oViewModel.setProperty("/filterBarLabel", this.getResourceBundle().getText("master2FilterBarText", [sFilterBarText]));
 			}
+
 		});
+
 	}
 );
