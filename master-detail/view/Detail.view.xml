@@ -16,7 +16,7 @@
 		<semantic:content>
 			<ObjectHeader
 					id="objectHeader"
-					title="{Name}"
+					title="{TerritoryDescription}"
 					number="{
 								path: 'UnitNumber',
 								formatter: '.formatter.currencyValue'
@@ -42,7 +42,7 @@
 			<Table
 					id="lineItemsList"
 					width="auto"
-					items="{LineItems}"
+					items="{Employees}"
 					updateFinished="onListUpdateFinished"
 					noDataText="{i18n>detailLineItemTableNoDataText}"
 					busyIndicatorDelay="{detailView>/lineItemTableDelay}"
@@ -69,7 +69,7 @@
 					<ColumnListItem>
 						<cells>
 							<ObjectIdentifier
-									title="{Name}"
+									title="{LastName}"
 									text="{LineItemID}"/>
 							<ObjectNumber
 								number="{

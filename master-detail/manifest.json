@@ -110,9 +110,9 @@
 					"target": ["detailNoObjectsAvailable", "master2"]
 				},
 				{
-					"pattern": "Objects/{objectId}",
+					"pattern": "t/{objectId}",
 					"name": "object",
-					"target": ["master", "object"]
+					"target": ["object"]
 				}
 			],
 
