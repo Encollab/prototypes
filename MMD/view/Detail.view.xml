@@ -17,10 +17,10 @@
 							<f:SimpleForm columnsL="1" columnsM="1" editable="false" emptySpanL="4" emptySpanM="4" id="detailForm" labelSpanL="3" labelSpanM="3"
 								layout="ResponsiveGridLayout" maxContainerCols="2" minWidth="1024">
 								<f:content>
-									<Label id="label1" text=""/>
-									<Text id="text1" text=""/>
-									<Label id="label2" text=""/>
-									<Text id="text2" text=""/>
+									<Label id="label1" text="ID"/>
+									<Text id="text1" text="{TerritoryID}"/>
+									<Label id="label2" text="Name"/>
+									<Text id="text2" text="{TerritoryDescription}"/>
 									<Label id="label3" text=""/>
 									<Text id="text3" text=""/>
 								</f:content>

@@ -9,15 +9,15 @@
 			</Bar>
 		</subHeader>
 		<content>
-			<List growing="true" growingScrollToLoad="true" id="master2List" items="{}" mode="{device>/listMode}"
+			<List growing="true" growingScrollToLoad="true" id="master2List" items="{Territories}" mode="{device>/listMode}"
 				noDataText="{i18n>masterListNoDataText}" select="onSelect">
 				<items>
-					<ObjectListItem id="master2ListItem" number="" numberUnit="" press="onSelect" title="" type="{device>/listItemType}">
+					<ObjectListItem id="master2ListItem" number="" numberUnit="" press="onSelect" title="{TerritoryDescription}" type="{device>/listItemType}">
 						<attributes>
 							<ObjectAttribute text=""/>
 						</attributes>
 						<firstStatus>
-							<ObjectStatus text=""/>
+							<ObjectStatus text="{TerritoryID}"/>
 						</firstStatus>
 					</ObjectListItem>
 				</items>

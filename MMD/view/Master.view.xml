@@ -9,13 +9,13 @@
 			</Bar>
 		</subHeader>
 		<content>
-			<List growing="true" growingScrollToLoad="true" id="master1List" items="{/}" mode="{device>/listMode}"
+			<List growing="true" growingScrollToLoad="true" id="master1List" items="{/Regions}" mode="{device>/listMode}"
 				noDataText="{i18n>masterListNoDataText}" select="onSelect">
 				<items>
-					<ObjectListItem id="master1ListItem" press="onSelect" title="" type="{device>/listItemType}">
+					<ObjectListItem id="master1ListItem" press="onSelect" title="{RegionDescription}" type="{device>/listItemType}">
 						<attributes>
-							<ObjectAttribute text=""/>
-							<ObjectAttribute text=""/>
+							<ObjectAttribute text="{RegionID}"/>
+							<ObjectAttribute text="{RegionDescription}"/>
 						</attributes>
 					</ObjectListItem>
 				</items>

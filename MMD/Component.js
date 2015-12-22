@@ -16,8 +16,8 @@ sap.ui.core.UIComponent.extend("yelcho.demo.Component", {
 		config: {
 			resourceBundle: "i18n/messageBundle.properties",
 			serviceConfig: {
-				name: "",
-				serviceUrl: ""
+				name: "Northwind",
+				serviceUrl: "/V2/Northwind/Northwind.svc/"
 			}
 		},
 
