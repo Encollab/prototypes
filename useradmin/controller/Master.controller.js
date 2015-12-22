@@ -1,17 +1,17 @@
 /*global history */
 sap.ui.define([
-    "encollab/dp/vehicle/controller/BaseController",
+    "encollab/dp/useradmin/controller/BaseController",
     "sap/ui/model/json/JSONModel",
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
     "sap/ui/Device",
-    "encollab/dp/vehicle/model/formatter",
-    "encollab/dp/vehicle/model/grouper",
-    "encollab/dp/vehicle/model/GroupSortState"
+    "encollab/dp/useradmin/model/formatter",
+    "encollab/dp/useradmin/model/grouper",
+    "encollab/dp/useradmin/model/GroupSortState"
 ], function(BaseController, JSONModel, Filter, FilterOperator, Device, formatter, grouper, GroupSortState) {
     "use strict";
 
-    return BaseController.extend("encollab.dp.vehicle.controller.Master", {
+    return BaseController.extend("encollab.dp.useradmin.controller.Master", {
 
         formatter: formatter,
 

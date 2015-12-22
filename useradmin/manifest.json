@@ -14,12 +14,8 @@
 		},
 		"dataSources": {
 			"mainService": {
-				"uri": "/here/goes/your/serviceUrl/",
-				"type": "OData",
-				"settings": {
-					"odataVersion": "2.0",
-					"localUri" : "localService/metadata.xml"
-				}
+				"uri": "./model/useradmin.json",
+				"type": "JSON"
 			}
 		}
 	},
@@ -105,9 +101,14 @@
 					"target": ["tiles"]
 				},
 				{
-					"pattern": "{dealer}",
-					"name": "dealer",
-					"target": ["master", "object"]
+					"pattern": "d/{dealer}/{user}",
+					"name": "userDetails",
+					"target": ["users", "userdetails"]
+				},
+				{
+					"pattern": "d/{dealer}",
+					"name": "users",
+					"target": ["users", "userdetails"]
 				}
 			],
 
@@ -116,17 +117,17 @@
 					"viewName": "Dealers",
 					"viewLevel": 1,
 					"viewId": "dealers",
-					"controlAggregation": "masterPages"
+					"controlAggregation": "detailPages"
 					},
-				"master": {
-					"viewName": "Master",
+				"users": {
+					"viewName": "Users",
 					"viewLevel": 1,
-					"viewId": "master",
+					"viewId": "users",
 					"controlAggregation": "masterPages"
 				},
-				"object": {
+				"userdetails": {
 					"viewName": "Detail",
-					"viewId": "detail",
+					"viewId": "userDetail",
 					"viewLevel": 2
 				},
 				"detailObjectNotFound": {

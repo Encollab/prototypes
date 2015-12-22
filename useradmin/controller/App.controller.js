@@ -1,10 +1,10 @@
 sap.ui.define([
-		"encollab/dp/vehicle/controller/BaseController",
+		"encollab/dp/useradmin/controller/BaseController",
 		"sap/ui/model/json/JSONModel"
 	], function (BaseController, JSONModel) {
 		"use strict";
 
-		return BaseController.extend("encollab.dp.vehicle.controller.App", {
+		return BaseController.extend("encollab.dp.useradmin.controller.App", {
 
 			onInit : function () {
 				var oViewModel,
@@ -23,8 +23,8 @@ sap.ui.define([
 					oViewModel.setProperty("/delay", iOriginalBusyDelay);
 				};
 
-				this.getOwnerComponent().getModel().metadataLoaded()
-						.then(fnSetAppNotBusy);
+				// this.getOwnerComponent().getModel().metadataLoaded()
+				// 		.then(fnSetAppNotBusy);
 
 				// Makes sure that master view is hidden in split app
 				// after a new list entry has been selected.

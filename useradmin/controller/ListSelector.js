@@ -3,14 +3,14 @@ sap.ui.define([
 	], function (BaseObject) {
 		"use strict";
 
-		return BaseObject.extend("encollab.dp.vehicle.model.ListSelector", {
+		return BaseObject.extend("encollab.dp.useradmin.model.ListSelector", {
 
 			/**
 			 * Provides a convenience API for selecting list items. All the functions will wait until the initial load of the a List passed to the instance by the setBoundMasterList
 			 * function.
 			 * @class
 			 * @public
-			 * @alias encollab.dp.vehicle.model.ListSelector
+			 * @alias encollab.dp.useradmin.model.ListSelector
 			 */
 
 			constructor : function () {
@@ -113,7 +113,7 @@ sap.ui.define([
 			 * is called.
 			 * @param {function} fnFunction the function to be executed when the list fires a selection change event
 			 * @param {function} oListener the listener object
-			 * @return {encollab.dp.vehicle.model.ListSelector} the list selector object for method chaining
+			 * @return {encollab.dp.useradmin.model.ListSelector} the list selector object for method chaining
 			 * @public
 			 */
 			attachListSelectionChange : function (fnFunction, oListener) {
@@ -129,7 +129,7 @@ sap.ui.define([
 			 * is called.
 			 * @param {function} fnFunction the function to be executed when the list fires a selection change event
 			 * @param {function} oListener the listener object
-			 * @return {encollab.dp.vehicle.model.ListSelector} the list selector object for method chaining
+			 * @return {encollab.dp.useradmin.model.ListSelector} the list selector object for method chaining
 			 * @public
 			 */
 			detachListSelectionChange : function (fnFunction, oListener) {

@@ -1,12 +1,12 @@
 /*global location */
 sap.ui.define([
-    "encollab/dp/vehicle/controller/BaseController",
+    "encollab/dp/useradmin/controller/BaseController",
     "sap/ui/model/json/JSONModel",
-    "encollab/dp/vehicle/model/formatter"
+    "encollab/dp/useradmin/model/formatter"
 ], function(BaseController, JSONModel, formatter) {
     "use strict";
 
-    return BaseController.extend("encollab.dp.vehicle.controller.Detail", {
+    return BaseController.extend("encollab.dp.useradmin.controller.Detail", {
 
         formatter: formatter,
 
@@ -23,11 +23,11 @@ sap.ui.define([
                 delay: 0
             });
 
-            this.getRouter().getRoute("vehicle").attachPatternMatched(this._onObjectMatched, this);
+            this.getRouter().getRoute("userDetails").attachPatternMatched(this._onObjectMatched, this);
 
             this.setModel(oViewModel, "detailView");
 
-            this.getOwnerComponent().getModel().metadataLoaded().then(this._onMetadataLoaded.bind(this));
+            //this.getOwnerComponent().getModel().metadataLoaded().then(this._onMetadataLoaded.bind(this));
         },
 
         /* =========================================================== */
@@ -54,13 +54,16 @@ sap.ui.define([
          * @private
          */
         _onObjectMatched: function(oEvent) {
-            var sObjectId = oEvent.getParameter("arguments").VIN;
-            this.getModel().metadataLoaded().then(function() {
-                var sObjectPath = this.getModel().createKey("Vehicles", {
-                    VIN: sObjectId
-                });
-                this._bindView("/" + sObjectPath);
-            }.bind(this));
+            var sDealerId = oEvent.getParameter("arguments").dealer;
+            var sUserId = oEvent.getParameter("arguments").user;
+            // this.getModel().metadataLoaded().then(function() {
+            //     var sObjectPath = this.getModel().createKey("Vehicles", {
+            //         VIN: sObjectId
+            //     });
+            //     this._bindView("/" + sObjectPath);
+            // }.bind(this));
+
+            this._bindView("/" + sDealerPath);
         },
 
         /**

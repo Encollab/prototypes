@@ -5,7 +5,13 @@ sap.ui.define([
 	], function (Controller, History) {
 		"use strict";
 
-		return Controller.extend("encollab.dp.vehicle.controller.BaseController", {
+		return Controller.extend("encollab.dp.useradmin.controller.BaseController", {
+			getRootControl: function () {
+				return this.getOwnerComponent().getAggregation("rootControl");
+			},
+			getApp: function(id) {
+				return this.getRootControl().byId(id || 'idAppControl');
+			},
 			/**
 			 * Convenience method for accessing the router in every controller of the application.
 			 * @public
