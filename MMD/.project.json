@@ -1,0 +1,30 @@
+{
+  "dataBinding": {
+    "/view/Master.view.xml": {
+      "entitySet": ""
+    },
+    "/view/NotFound.view.xml": {
+      "entitySet": "UNBINDKEY"
+    },
+    "/view/App.view.xml": {
+      "entitySet": "UNBINDKEY"
+    },
+    "/view/Welcome.view.xml": {
+      "entitySet": "UNBINDKEY"
+    }
+  },
+  "generation": [
+    {
+      "templateId": "ui5template.fioriMasterMasterDetail",
+      "templateVersion": "1.4.0",
+      "dateTimeStamp": "Tue, 22 Dec 2015 05:40:54 GMT"
+    }
+  ],
+  "translation": {
+    "translationDomain": "",
+    "supportedLanguages": "en,fr,de",
+    "defaultLanguage": "en",
+    "defaultI18NPropertyFile": "i18n.properties",
+    "resourceModelName": "i18n"
+  }
+}

@@ -58,6 +58,7 @@ sap.ui.define([
 				});
 
 				this.getRouter().getRoute("master2").attachPatternMatched(this._onMasterMatched, this);
+				this.getRouter().getRoute("object").attachPatternMatched(this._onObjectMatched, this);
 				this.getRouter().attachBypassed(this.onBypassed, this);
 			},
 
@@ -266,6 +267,17 @@ sap.ui.define([
 				// 		this.getRouter().getTargets().display("detailNoObjectsAvailable");
 				// 	}.bind(this)
 				// );
+				console.log('_onMasterMatched');
+				var sObjectId =  oEvent.getParameter("arguments").objectId;
+				this.getModel().metadataLoaded().then( function() {
+					var sObjectPath = this.getModel().createKey("Regions", {
+						RegionID :  sObjectId
+					});
+					this._bindView("/" + sObjectPath);
+				}.bind(this));
+			},
+			_onObjectMatched: function(oEvent) {
+				console.log('_onObjectMatched');
 				var sObjectId =  oEvent.getParameter("arguments").objectId;
 				this.getModel().metadataLoaded().then( function() {
 					var sObjectPath = this.getModel().createKey("Regions", {
@@ -297,6 +309,7 @@ sap.ui.define([
 			},
 
 			_onBindingChange : function () {
+				console.log('_onBindingChange');
 				var oView = this.getView(),
 					oElementBinding = oView.getElementBinding();
 
