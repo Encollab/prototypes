@@ -12,7 +12,7 @@ sap.ui.define([
 	], function (BaseController, JSONModel, Filter, FilterOperator, GroupHeaderListItem, Device, formatter, grouper, GroupSortState) {
 		"use strict";
 
-		return BaseController.extend("encollab.dp.masterdetail.controller.Master", {
+		return BaseController.extend("encollab.dp.masterdetail.controller.Master2", {
 
 			formatter: formatter,
 
@@ -57,7 +57,7 @@ sap.ui.define([
 					}.bind(this)
 				});
 
-				this.getRouter().getRoute("master").attachPatternMatched(this._onMasterMatched, this);
+				this.getRouter().getRoute("master2").attachPatternMatched(this._onMasterMatched, this);
 				this.getRouter().attachBypassed(this.onBypassed, this);
 			},
 
@@ -250,22 +250,79 @@ sap.ui.define([
 			 * listLoading is done and the first item in the list is known
 			 * @private
 			 */
-			_onMasterMatched :  function() {
-				this.getOwnerComponent().oListSelector.oWhenListLoadingIsDone.then(
-					function (mParams) {
-						if (mParams.list.getMode() === "None") {
-							return;
+			_onMasterMatched :  function(oEvent) {
+				// this.getOwnerComponent().oListSelector.oWhenListLoadingIsDone.then(
+				// 	function (mParams) {
+				// 		if (mParams.list.getMode() === "None") {
+				// 			return;
+				// 		}
+				// 		var sObjectId = mParams.firstListitem.getBindingContext().getProperty("ObjectID");
+				// 		this.getRouter().navTo("object", {objectId : sObjectId}, true);
+				// 	}.bind(this),
+				// 	function (mParams) {
+				// 		if (mParams.error) {
+				// 			return;
+				// 		}
+				// 		this.getRouter().getTargets().display("detailNoObjectsAvailable");
+				// 	}.bind(this)
+				// );
+				var sObjectId =  oEvent.getParameter("arguments").objectId;
+				this.getModel().metadataLoaded().then( function() {
+					var sObjectPath = this.getModel().createKey("Regions", {
+						RegionID :  sObjectId
+					});
+					this._bindView("/" + sObjectPath);
+					console.warn('test');
+				}.bind(this));
+			},
+
+			_bindView : function (sObjectPath) {
+				// Set busy indicator during view binding
+				var oViewModel = this.getModel("masterView");
+
+				// If the view was not bound yet its not busy, only if the binding requests data it is set to busy again
+				oViewModel.setProperty("/busy", false);
+
+				this.getView().bindElement({
+					path : sObjectPath,
+					events: {
+						change : this._onBindingChange.bind(this),
+						dataRequested : function () {
+							oViewModel.setProperty("/busy", true);
+						},
+						dataReceived: function () {
+							oViewModel.setProperty("/busy", false);
 						}
-						var sObjectId = mParams.firstListitem.getBindingContext().getProperty("ObjectID");
-						this.getRouter().navTo("object", {objectId : sObjectId}, true);
-					}.bind(this),
-					function (mParams) {
-						if (mParams.error) {
-							return;
-						}
-						this.getRouter().getTargets().display("detailNoObjectsAvailable");
-					}.bind(this)
-				);
+					}
+				});
+			},
+
+			_onBindingChange : function () {
+				var oView = this.getView(),
+					oElementBinding = oView.getElementBinding();
+
+				// No data for the binding
+				if (!oElementBinding.getBoundContext()) {
+					this.getRouter().getTargets().display("detailObjectNotFound");
+					// if object could not be found, the selection in the master list
+					// does not make sense anymore.
+					this.getOwnerComponent().oListSelector.clearMasterListSelection();
+					return;
+				}
+
+				var sPath = oElementBinding.getPath(),
+					oResourceBundle = this.getResourceBundle(),
+					oObject = oView.getModel().getObject(sPath),
+					sObjectId = oObject.ObjectID,
+					sObjectName = oObject.Name,
+					oViewModel = this.getModel("masterView");
+
+				this.getOwnerComponent().oListSelector.selectAListItem(sPath);
+
+				oViewModel.setProperty("/shareSendEmailSubject",
+					oResourceBundle.getText("shareSendEmailObjectSubject", [sObjectId]));
+				oViewModel.setProperty("/shareSendEmailMessage",
+					oResourceBundle.getText("shareSendEmailObjectMessage", [sObjectName, sObjectId, location.href]));
 			},
 
 			/**
@@ -276,8 +333,8 @@ sap.ui.define([
 			 */
 			_showDetail : function (oItem) {
 				var bReplace = !Device.system.phone;
-				this.getRouter().navTo("master2", {
-					objectId : oItem.getBindingContext().getProperty("RegionID")
+				this.getRouter().navTo("object", {
+					objectId : oItem.getBindingContext().getProperty("ObjectID")
 				}, bReplace);
 			},
 
