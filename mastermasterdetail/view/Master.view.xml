@@ -33,9 +33,9 @@
 			<List
 					id="list"
 					items="{
-						path: '/Objects',
+						path: '/Regions',
 						sorter: {
-							path: 'Name',
+							path: 'RegionID',
 							descending: false
 							},
 						groupHeaderFactory: '.createGroupHeader'
@@ -62,12 +62,8 @@
 					<ObjectListItem
 							type="{= ${device>/system/phone} ? 'Active' : 'Inactive'}"
 							press="onSelectionChange"
-							title="{Name}"
-							number="{
-								path: 'UnitNumber',
-								formatter: '.formatter.currencyValue'
-							}"
-							numberUnit="{UnitOfMeasure}">
+							title="{RegionDescription}"
+							number="{RegionID}">
 					</ObjectListItem>
 				</items>
 			</List>
