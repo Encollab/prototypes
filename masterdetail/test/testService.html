@@ -12,14 +12,14 @@
 			data-sap-ui-libs="sap.m"
 			data-sap-ui-theme="sap_bluecrystal"
 			data-sap-ui-compatVersion="edge"
-			data-sap-ui-resourceroots='{"sap.ui.demo.masterdetail": "../"}'
+			data-sap-ui-resourceroots='{"encollab.dp.masterdetail": "../"}'
 			data-sap-ui-frameOptions='allow'> 	// NON-SECURE setting for testing environment
 	</script>
 
 	<script>
 		sap.ui.getCore().attachInit(function () {
 			sap.ui.require([
-				"sap/ui/demo/masterdetail/localService/mockserver",
+				"encollab/dp/masterdetail/localService/mockserver",
 				"sap/m/Shell",
 				"sap/ui/core/ComponentContainer"
 			], function (server, Shell, ComponentContainer) {
@@ -29,7 +29,7 @@
 				new Shell({
 					app: new ComponentContainer({
 						height : "100%",
-						name : "sap.ui.demo.masterdetail"
+						name : "encollab.dp.masterdetail"
 					})
 				}).placeAt("content");
 			});

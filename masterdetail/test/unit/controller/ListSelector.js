@@ -1,5 +1,5 @@
 sap.ui.define([
-		"sap/ui/demo/masterdetail/controller/ListSelector",
+		"encollab/dp/masterdetail/controller/ListSelector",
 		"sap/ui/thirdparty/sinon",
 		"sap/ui/thirdparty/sinon-qunit"
 	], function(ListSelector) {

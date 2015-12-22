@@ -1,18 +1,18 @@
 /*global history */
 sap.ui.define([
-		"sap/ui/demo/masterdetail/controller/BaseController",
+		"encollab/dp/masterdetail/controller/BaseController",
 		"sap/ui/model/json/JSONModel",
 		"sap/ui/model/Filter",
 		"sap/ui/model/FilterOperator",
 		"sap/m/GroupHeaderListItem",
 		"sap/ui/Device",
-		"sap/ui/demo/masterdetail/model/formatter",
-		"sap/ui/demo/masterdetail/model/grouper",
-		"sap/ui/demo/masterdetail/model/GroupSortState"
+		"encollab/dp/masterdetail/model/formatter",
+		"encollab/dp/masterdetail/model/grouper",
+		"encollab/dp/masterdetail/model/GroupSortState"
 	], function (BaseController, JSONModel, Filter, FilterOperator, GroupHeaderListItem, Device, formatter, grouper, GroupSortState) {
 		"use strict";
 
-		return BaseController.extend("sap.ui.demo.masterdetail.controller.Master", {
+		return BaseController.extend("encollab.dp.masterdetail.controller.Master", {
 
 			formatter: formatter,
 
@@ -150,7 +150,7 @@ sap.ui.define([
 			 */
 			onOpenViewSettings : function () {
 				if (!this._oViewSettingsDialog) {
-					this._oViewSettingsDialog = sap.ui.xmlfragment("sap.ui.demo.masterdetail.view.ViewSettingsDialog", this);
+					this._oViewSettingsDialog = sap.ui.xmlfragment("encollab.dp.masterdetail.view.ViewSettingsDialog", this);
 					this.getView().addDependent(this._oViewSettingsDialog);
 					// forward compact/cozy style into Dialog
 					this._oViewSettingsDialog.addStyleClass(this.getOwnerComponent().getContentDensityClass());

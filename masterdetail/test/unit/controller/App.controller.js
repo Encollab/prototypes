@@ -1,5 +1,5 @@
 sap.ui.define([
-		"sap/ui/demo/masterdetail/controller/App.controller",
+		"encollab/dp/masterdetail/controller/App.controller",
 		"sap/m/SplitApp",
 		"sap/ui/core/Control",
 		"sap/ui/model/json/JSONModel",

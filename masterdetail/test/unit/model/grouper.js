@@ -1,5 +1,5 @@
 sap.ui.define([
-		"sap/ui/demo/masterdetail/model/grouper",
+		"encollab/dp/masterdetail/model/grouper",
 		"sap/ui/model/resource/ResourceModel",
 		"jquery.sap.global",
 		"sap/ui/thirdparty/sinon",
@@ -9,7 +9,7 @@ sap.ui.define([
 
 	function createResourceModel () {
 		return new ResourceModel({
-			bundleUrl : [$.sap.getModulePath("sap.ui.demo.masterdetail"), "i18n/i18n.properties"].join("/")
+			bundleUrl : [$.sap.getModulePath("encollab.dp.masterdetail"), "i18n/i18n.properties"].join("/")
 		});
 	}
 

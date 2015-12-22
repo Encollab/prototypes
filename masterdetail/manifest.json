@@ -3,7 +3,7 @@
 
 	"sap.app": {
 		"_version": "1.2.0",
-		"id": "sap.ui.demo.masterdetail",
+		"id": "encollab.dp.masterdetail",
 		"type": "application",
 		"i18n": "i18n/i18n.properties",
 		"title": "{{appTitle}}",
@@ -49,7 +49,7 @@
 	"sap.ui5": {
 		"_version": "1.1.0",
 		"rootView": {
-			"viewName": "sap.ui.demo.masterdetail.view.App",
+			"viewName": "encollab.dp.masterdetail.view.App",
 			"type": "XML",
 			"id": "app"
 		},
@@ -72,7 +72,7 @@
 			"i18n": {
 				"type": "sap.ui.model.resource.ResourceModel",
 				"settings": {
-					"bundleName": "sap.ui.demo.masterdetail.i18n.i18n"
+					"bundleName": "encollab.dp.masterdetail.i18n.i18n"
 				}
 			},
 			"" : {
@@ -89,7 +89,7 @@
 			"config": {
 				"routerClass": "sap.m.routing.Router",
 				"viewType": "XML",
-				"viewPath": "sap.ui.demo.masterdetail.view",
+				"viewPath": "encollab.dp.masterdetail.view",
 				"controlId": "idAppControl",
 				"controlAggregation": "detailPages",
 				"bypassed": {
