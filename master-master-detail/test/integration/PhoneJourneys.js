@@ -5,24 +5,24 @@ QUnit.config.autostart = false;
 
 sap.ui.require([
 	"sap/ui/test/Opa5",
-	"encollab/dp/mastermasterdetail/test/integration/pages/Common",
+	"encollab/dp/masterdetail/test/integration/pages/Common",
 	"sap/ui/test/opaQunit",
-	"encollab/dp/mastermasterdetail/test/integration/pages/App",
-	"encollab/dp/mastermasterdetail/test/integration/pages/Browser",
-	"encollab/dp/mastermasterdetail/test/integration/pages/Master",
-	"encollab/dp/mastermasterdetail/test/integration/pages/Detail",
-	"encollab/dp/mastermasterdetail/test/integration/pages/NotFound"
+	"encollab/dp/masterdetail/test/integration/pages/App",
+	"encollab/dp/masterdetail/test/integration/pages/Browser",
+	"encollab/dp/masterdetail/test/integration/pages/Master",
+	"encollab/dp/masterdetail/test/integration/pages/Detail",
+	"encollab/dp/masterdetail/test/integration/pages/NotFound"
 ], function (Opa5, Common) {
 	"use strict";
 	Opa5.extendConfig({
 		arrangements: new Common(),
-		viewNamespace: "encollab.dp.mastermasterdetail.view."
+		viewNamespace: "encollab.dp.masterdetail.view."
 	});
 
 	sap.ui.require([
-		"encollab/dp/mastermasterdetail/test/integration/NavigationJourneyPhone",
-		"encollab/dp/mastermasterdetail/test/integration/NotFoundJourneyPhone",
-		"encollab/dp/mastermasterdetail/test/integration/BusyJourneyPhone"
+		"encollab/dp/masterdetail/test/integration/NavigationJourneyPhone",
+		"encollab/dp/masterdetail/test/integration/NotFoundJourneyPhone",
+		"encollab/dp/masterdetail/test/integration/BusyJourneyPhone"
 	], function () {
 		QUnit.start();
 	});

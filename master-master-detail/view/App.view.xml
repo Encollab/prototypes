@@ -1,5 +1,5 @@
 <mvc:View
-		controllerName="encollab.dp.mastermasterdetail.controller.App"
+		controllerName="encollab.dp.masterdetail.controller.App"
 		xmlns:mvc="sap.ui.core.mvc"
 		displayBlock="true"
 		busy="{appView>/busy}"

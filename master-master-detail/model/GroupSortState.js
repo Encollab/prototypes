@@ -4,7 +4,7 @@ sap.ui.define([
 	], function (BaseObject, Sorter) {
 	"use strict";
 
-	return BaseObject.extend("encollab.dp.mastermasterdetail.model.GroupSortState", {
+	return BaseObject.extend("encollab.dp.masterdetail.model.GroupSortState", {
 
 		/**
 		 * Creates sorters and groupers for the master list.
@@ -15,7 +15,7 @@ sap.ui.define([
 		 * @public
 		 * @param {sap.ui.model.json.JSONModel} oViewModel the model of the current view
 		 * @param {function} fnGroupFunction the grouping function to be applied
-		 * @alias encollab.dp.mastermasterdetail.model.GroupSortState
+		 * @alias encollab.dp.masterdetail.model.GroupSortState
 		 */
 		constructor: function (oViewModel, fnGroupFunction) {
 			this._oViewModel = oViewModel;

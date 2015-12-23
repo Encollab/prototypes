@@ -1,13 +1,13 @@
 sap.ui.define([
 		"sap/ui/core/UIComponent",
 		"sap/ui/Device",
-		"encollab/dp/mastermasterdetail/model/models",
-		"encollab/dp/mastermasterdetail/controller/ListSelector",
-		"encollab/dp/mastermasterdetail/controller/ErrorHandler"
+		"encollab/dp/masterdetail/model/models",
+		"encollab/dp/masterdetail/controller/ListSelector",
+		"encollab/dp/masterdetail/controller/ErrorHandler"
 	], function (UIComponent, Device, models, ListSelector, ErrorHandler) {
 		"use strict";
 
-		return UIComponent.extend("encollab.dp.mastermasterdetail.Component", {
+		return UIComponent.extend("encollab.dp.masterdetail.Component", {
 
 			metadata : {
 				manifest : "json"

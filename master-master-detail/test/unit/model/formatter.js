@@ -1,6 +1,6 @@
 sap.ui.define([
 		"sap/m/Text",
-		"encollab/dp/mastermasterdetail/model/formatter"
+		"encollab/dp/masterdetail/model/formatter"
 	], function (Text, formatter) {
 		"use strict";
 

@@ -1,5 +1,5 @@
 sap.ui.define([
-		"encollab/dp/mastermasterdetail/model/models",
+		"encollab/dp/masterdetail/model/models",
 		"sap/ui/thirdparty/sinon",
 		"sap/ui/thirdparty/sinon-qunit"
 	], function (models) {

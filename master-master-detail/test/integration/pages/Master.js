@@ -1,6 +1,6 @@
 sap.ui.define([
 		"sap/ui/test/Opa5",
-		"encollab/dp/mastermasterdetail/test/integration/pages/Common",
+		"encollab/dp/masterdetail/test/integration/pages/Common",
 		"sap/ui/test/matchers/AggregationLengthEquals",
 		"sap/ui/test/matchers/AggregationFilled",
 		"sap/ui/test/matchers/PropertyStrictEquals"

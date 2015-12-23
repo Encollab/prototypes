@@ -5,7 +5,7 @@ sap.ui.define([
 	], function (Controller, History) {
 		"use strict";
 
-		return Controller.extend("encollab.dp.mastermasterdetail.controller.BaseController", {
+		return Controller.extend("encollab.dp.masterdetail.controller.BaseController", {
 			/**
 			 * Convenience method for accessing the router in every controller of the application.
 			 * @public
@@ -60,7 +60,7 @@ sap.ui.define([
 				} else {
 					// Otherwise we go backwards with a forward history
 					var bReplace = true;
-					this.getRouter().navTo("master", {}, bReplace);
+					this.getRouter().navTo("master1", {}, bReplace);
 				}
 			}
 

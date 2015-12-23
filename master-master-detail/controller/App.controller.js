@@ -1,10 +1,10 @@
 sap.ui.define([
-		"encollab/dp/mastermasterdetail/controller/BaseController",
+		"encollab/dp/masterdetail/controller/BaseController",
 		"sap/ui/model/json/JSONModel"
 	], function (BaseController, JSONModel) {
 		"use strict";
 
-		return BaseController.extend("encollab.dp.mastermasterdetail.controller.App", {
+		return BaseController.extend("encollab.dp.masterdetail.controller.App", {
 
 			onInit : function () {
 				var oViewModel,
@@ -34,6 +34,10 @@ sap.ui.define([
 
 				// apply content density mode to root view
 				this.getView().addStyleClass(this.getOwnerComponent().getContentDensityClass());
+
+				// Turn off batch mode on model for testing
+				//this.getOwnerComponent().getModel().metadataLoaded().then(this.getModel().setUseBatch(false));
+				this.getOwnerComponent().getModel().setUseBatch(false);
 			}
 
 		});

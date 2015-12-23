@@ -1,12 +1,12 @@
 /*global location */
 sap.ui.define([
-		"encollab/dp/mastermasterdetail/controller/BaseController",
+		"encollab/dp/masterdetail/controller/BaseController",
 		"sap/ui/model/json/JSONModel",
-		"encollab/dp/mastermasterdetail/model/formatter"
+		"encollab/dp/masterdetail/model/formatter"
 	], function (BaseController, JSONModel, formatter) {
 		"use strict";
 
-		return BaseController.extend("encollab.dp.mastermasterdetail.controller.Detail", {
+		return BaseController.extend("encollab.dp.masterdetail.controller.Detail", {
 
 			formatter: formatter,
 
@@ -85,8 +85,8 @@ sap.ui.define([
 			_onObjectMatched : function (oEvent) {
 				var sObjectId =  oEvent.getParameter("arguments").objectId;
 				this.getModel().metadataLoaded().then( function() {
-					var sObjectPath = this.getModel().createKey("Territories", {
-						TerritoryID :  sObjectId
+					var sObjectPath = this.getModel().createKey("Employees", {
+						EmployeeID :  sObjectId
 					});
 					this._bindView("/" + sObjectPath);
 				}.bind(this));

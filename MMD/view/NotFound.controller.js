@@ -1,1 +1,0 @@
-sap.ui.core.mvc.Controller.extend("yelcho.demo.view.NotFound", {});
