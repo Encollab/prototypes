@@ -1,5 +1,5 @@
 <mvc:View
-		controllerName="encollab.dp.masterdetail.controller.Master"
+		controllerName="encollab.dp.masterdetail.controller.Master2"
 		xmlns:mvc="sap.ui.core.mvc"
 		xmlns:core="sap.ui.core"
 		xmlns="sap.m"

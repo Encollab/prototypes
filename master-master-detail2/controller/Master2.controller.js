@@ -12,7 +12,7 @@ sap.ui.define([
 	], function (BaseController, JSONModel, Filter, FilterOperator, GroupHeaderListItem, Device, formatter, grouper, GroupSortState) {
 		"use strict";
 
-		return BaseController.extend("encollab.dp.masterdetail.controller.Master", {
+		return BaseController.extend("encollab.dp.masterdetail.controller.Master2", {
 
 			formatter: formatter,
 
@@ -57,7 +57,7 @@ sap.ui.define([
 					}.bind(this)
 				});
 
-				this.getRouter().getRoute("master").attachPatternMatched(this._onMasterMatched, this);
+				this.getRouter().getRoute("master2").attachPatternMatched(this._onMaster2Matched, this);
 				this.getRouter().attachBypassed(this.onBypassed, this);
 			},
 
@@ -250,7 +250,7 @@ sap.ui.define([
 			 * listLoading is done and the first item in the list is known
 			 * @private
 			 */
-			_onMasterMatched :  function() {
+			_onMaster2Matched :  function() {
 				this.getOwnerComponent().oListSelector.oWhenListLoadingIsDone.then(
 					function (mParams) {
 						if (mParams.list.getMode() === "None") {

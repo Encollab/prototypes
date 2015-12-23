@@ -102,21 +102,21 @@
 			"routes": [
 				{
 					"pattern": "",
-					"name": "master",
-					"target": ["object", "master"]
+					"name": "master2",
+					"target": ["object", "master2"]
 				},
 				{
 					"pattern": "B/{objectId}",
 					"name": "object",
-					"target": ["master", "object"]
+					"target": ["master2", "object"]
 				}
 			],
 
 			"targets": {
-				"master": {
-					"viewName": "Master",
+				"master2": {
+					"viewName": "Master2",
 					"viewLevel": 1,
-					"viewId": "master",
+					"viewId": "master2",
 					"controlAggregation": "masterPages"
 				},
 				"object": {
