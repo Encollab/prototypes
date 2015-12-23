@@ -106,7 +106,7 @@
 					"target": ["object", "master"]
 				},
 				{
-					"pattern": "Objects/{objectId}",
+					"pattern": "B/{objectId}",
 					"name": "object",
 					"target": ["master", "object"]
 				}
