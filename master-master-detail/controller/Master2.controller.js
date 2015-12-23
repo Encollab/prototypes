@@ -252,28 +252,30 @@ sap.ui.define([
 			 * @private
 			 */
 			_onMaster2Matched :  function(oEvent) {
-				// this.getOwnerComponent().oListSelector.oWhenListLoadingIsDone.then(
-				// 	function (mParams) {
-				// 		if (mParams.list.getMode() === "None") {
-				// 			return;
-				// 		}
-				// 		var sObjectId = mParams.firstListitem.getBindingContext().getProperty("EmployeeID");
-				// 		this.getRouter().navTo("object", {objectId : sObjectId}, true);
-				// 	}.bind(this),
-				// 	function (mParams) {
-				// 		if (mParams.error) {
-				// 			return;
-				// 		}
-				// 		this.getRouter().getTargets().display("detailNoObjectsAvailable");
-				// 	}.bind(this)
-				// );
-				var sObjectId =  oEvent.getParameter("arguments").master1Id;
+				var sMaster1Id =  oEvent.getParameter("arguments").master1Id;
 				this.getModel().metadataLoaded().then( function() {
 					var sObjectPath = this.getModel().createKey("Territories", {
-						TerritoryID :  sObjectId
+						TerritoryID :  sMaster1Id
 					});
 					this._bindView("/" + sObjectPath);
 				}.bind(this));
+
+				this.getOwnerComponent().oListSelector.oWhenListLoadingIsDone.then(
+					function (mParams) {
+						if (mParams.list.getMode() === "None") {
+							return;
+						}
+						//var sObjectId = mParams.firstListitem.getBindingContext().getProperty("EmployeeID");
+						//this.getRouter().navTo("object", {master1Id : sMaster1Id, objectId : sObjectId}, true);
+					}.bind(this),
+					function (mParams) {
+						if (mParams.error) {
+							return;
+						}
+						this.getRouter().getTargets().display("detailNoObjectsAvailable");
+					}.bind(this)
+				);
+
 			},
 
 			/**
