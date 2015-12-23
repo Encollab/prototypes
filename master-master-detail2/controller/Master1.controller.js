@@ -12,7 +12,7 @@ sap.ui.define([
 	], function (BaseController, JSONModel, Filter, FilterOperator, GroupHeaderListItem, Device, formatter, grouper, GroupSortState) {
 		"use strict";
 
-		return BaseController.extend("encollab.dp.masterdetail.controller.Master2", {
+		return BaseController.extend("encollab.dp.masterdetail.controller.Master1", {
 
 			formatter: formatter,
 
@@ -57,7 +57,7 @@ sap.ui.define([
 					}.bind(this)
 				});
 
-				this.getRouter().getRoute("master2").attachPatternMatched(this._onMaster2Matched, this);
+				this.getRouter().getRoute("master1").attachPatternMatched(this._onMaster1Matched, this);
 				this.getRouter().attachBypassed(this.onBypassed, this);
 			},
 
@@ -237,7 +237,7 @@ sap.ui.define([
 					isFilterBarVisible: false,
 					filterBarLabel: "",
 					delay: 0,
-					title: this.getResourceBundle().getText("masterTitleCount", [0]),
+					title: this.getResourceBundle().getText("master1TitleCount", [0]),
 					noDataText: this.getResourceBundle().getText("masterListNoDataText"),
 					sortBy: "Name",
 					groupBy: "None"
@@ -250,87 +250,23 @@ sap.ui.define([
 			 * listLoading is done and the first item in the list is known
 			 * @private
 			 */
-			_onMaster2Matched :  function(oEvent) {
-				// this.getOwnerComponent().oListSelector.oWhenListLoadingIsDone.then(
-				// 	function (mParams) {
-				// 		if (mParams.list.getMode() === "None") {
-				// 			return;
-				// 		}
-				// 		var sObjectId = mParams.firstListitem.getBindingContext().getProperty("EmployeeID");
-				// 		this.getRouter().navTo("object", {objectId : sObjectId}, true);
-				// 	}.bind(this),
-				// 	function (mParams) {
-				// 		if (mParams.error) {
-				// 			return;
-				// 		}
-				// 		this.getRouter().getTargets().display("detailNoObjectsAvailable");
-				// 	}.bind(this)
-				// );
-				var sObjectId =  oEvent.getParameter("arguments").master1Id;
-				this.getModel().metadataLoaded().then( function() {
-					var sObjectPath = this.getModel().createKey("Territories", {
-						TerritoryID :  sObjectId
-					});
-					this._bindView("/" + sObjectPath);
-				}.bind(this));
-			},
-
-			/**
-			 * Binds the view to the object path. Makes sure that detail view displays
-			 * a busy indicator while data for the corresponding element binding is loaded.
-			 * @function
-			 * @param {string} sObjectPath path to the object to be bound to the view.
-			 * @private
-			 */
-			_bindView : function (sObjectPath) {
-				// Set busy indicator during view binding
-				var oViewModel = this.getModel("masterView");
-
-				// If the view was not bound yet its not busy, only if the binding requests data it is set to busy again
-				oViewModel.setProperty("/busy", false);
-
-				this.getView().bindElement({
-					path : sObjectPath,
-					events: {
-						change : this._onBindingChange.bind(this),
-						dataRequested : function () {
-							oViewModel.setProperty("/busy", true);
-						},
-						dataReceived: function () {
-							oViewModel.setProperty("/busy", false);
+			_onMaster1Matched :  function() {
+				this.getOwnerComponent().oListSelector.oWhenListLoadingIsDone.then(
+					function (mParams) {
+						if (mParams.list.getMode() === "None") {
+							return;
 						}
-					}
-				});
+						//var sObjectId = mParams.firstListitem.getBindingContext().getProperty("EmployeeID");
+						//this.getRouter().navTo("object", {objectId : sObjectId}, true);
+					}.bind(this),
+					function (mParams) {
+						if (mParams.error) {
+							return;
+						}
+						this.getRouter().getTargets().display("detailNoObjectsAvailable");
+					}.bind(this)
+				);
 			},
-
-			_onBindingChange : function () {
-				var oView = this.getView(),
-					oElementBinding = oView.getElementBinding();
-
-				// No data for the binding
-				if (!oElementBinding.getBoundContext()) {
-					this.getRouter().getTargets().display("detailObjectNotFound");
-					// if object could not be found, the selection in the master list
-					// does not make sense anymore.
-					this.getOwnerComponent().oListSelector.clearMasterListSelection();
-					return;
-				}
-
-				var sPath = oElementBinding.getPath(),
-					oResourceBundle = this.getResourceBundle(),
-					oObject = oView.getModel().getObject(sPath),
-					sObjectId = oObject.ObjectID,
-					sObjectName = oObject.Name,
-					oViewModel = this.getModel("masterView");
-
-				this.getOwnerComponent().oListSelector.selectAListItem(sPath);
-
-				oViewModel.setProperty("/shareSendEmailSubject",
-					oResourceBundle.getText("shareSendEmailObjectSubject", [sObjectId]));
-				oViewModel.setProperty("/shareSendEmailMessage",
-					oResourceBundle.getText("shareSendEmailObjectMessage", [sObjectName, sObjectId, location.href]));
-			},
-
 
 			/**
 			 * Shows the selected item on the detail page
@@ -340,8 +276,8 @@ sap.ui.define([
 			 */
 			_showDetail : function (oItem) {
 				var bReplace = !Device.system.phone;
-				this.getRouter().navTo("object", {
-					objectId : oItem.getBindingContext().getProperty("EmployeeID")
+				this.getRouter().navTo("master2", {
+					master1Id : oItem.getBindingContext().getProperty("TerritoryID")
 				}, bReplace);
 			},
 
@@ -354,7 +290,7 @@ sap.ui.define([
 				var sTitle;
 				// only update the counter if the length is final
 				if (this._oList.getBinding("items").isLengthFinal()) {
-					sTitle = this.getResourceBundle().getText("masterTitleCount", [iTotalItems]);
+					sTitle = this.getResourceBundle().getText("master1TitleCount", [iTotalItems]);
 					this.getModel("masterView").setProperty("/title", sTitle);
 				}
 			},

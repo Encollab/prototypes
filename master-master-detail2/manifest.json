@@ -102,8 +102,13 @@
 			"routes": [
 				{
 					"pattern": "",
+					"name": "master1",
+					"target": ["detailObjectNotFound", "master1"]
+				},
+				{
+					"pattern": "A/{master1Id}",
 					"name": "master2",
-					"target": ["object", "master2"]
+					"target": ["detailObjectNotFound", "master2"]
 				},
 				{
 					"pattern": "B/{objectId}",
@@ -113,6 +118,12 @@
 			],
 
 			"targets": {
+				"master1": {
+					"viewName": "Master1",
+					"viewLevel": 1,
+					"viewId": "master1",
+					"controlAggregation": "masterPages"
+				},
 				"master2": {
 					"viewName": "Master2",
 					"viewLevel": 1,
