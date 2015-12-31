@@ -1,6 +1,5 @@
 jQuery.sap.declare("encollab.dp.bb.control.ColumnListItem");
-// This allows adding a class attribute to the standard control during definition
-sap.m.ColumnListItem.extend("encollab.dp.control.bb.ColumnListItem", {
+sap.m.ColumnListItem.extend("encollab.dp.bb.control.ColumnListItem", {
     metadata: {
         properties: {
             role: {

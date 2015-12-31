@@ -29,6 +29,9 @@ sap.ui.define([], function() {
                 return value;
             }
         },
+        exists: function(object) {
+            return object ? true : false;
+        },
         _statusStateMap: {
             "INP": "Error",
             "SUB": "Success"
@@ -37,16 +40,8 @@ sap.ui.define([], function() {
         SOStatusState: function(value) {
             return (value && this.formatter._statusStateMap[value]) ? this.formatter._statusStateMap[value] : "None";
         },
-        calcPrice: function(price, qty, discount) {
-            return parseFloat(price * qty * (1 - discount)).toFixed(2);
-        },
-        totalBasket: function(items) {
-            if (!items || !items.push) return 0;
-            var total = 0;
-            for (var i = 0; i < items.length; i++) {
-                total = total + parseFloat(items[i].UnitPrice * items[i].Quantity * (1 - items[i].Discount)).toFixed(2);
-            }
-            return total;
+        calcPrice: function(price, qty) {
+            return parseFloat(price * qty).toFixed(2);
         }
 
     };

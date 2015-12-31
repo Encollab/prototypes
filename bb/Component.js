@@ -3,10 +3,11 @@ sap.ui.define([
     "sap/ui/Device",
     "sap/m/MessagePopover",
     "sap/m/MessagePopoverItem",
+    "sap/ui/model/json/JSONModel",
     "encollab/dp/bb/model/models",
     "encollab/dp/bb/controller/ListSelector",
     "encollab/dp/bb/controller/ErrorHandler",
-], function(UIComponent, Device, MessagePopover, MessagePopoverItem, models, ListSelector, ErrorHandler) {
+], function(UIComponent, Device, MessagePopover, MessagePopoverItem, JSONModel, models, ListSelector, ErrorHandler) {
     "use strict";
 
     return UIComponent.extend("encollab.dp.bb.Component", {

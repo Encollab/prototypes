@@ -3,8 +3,9 @@ sap.ui.define([
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
     "sap/m/MessageBox",
-    "sap/m/MessageToast"
-], function(Controller, Filter, FilterOperator, MessageBox, MessageToast) {
+    "sap/m/MessageToast",
+    "encollab/dp/bb/control/ColumnListItem",
+], function(Controller, Filter, FilterOperator, MessageBox, MessageToast, ColumnListItem) {
     "use strict";
     return Controller.extend("encollab.dp.bb.controller.Detail", {
         _oDialog: null,
@@ -16,13 +17,45 @@ sap.ui.define([
         _onObjectMatched: function(oEvent) {
             this.myView.bindElement({
                 path: "/" + oEvent.getParameter("arguments").objectId
-                // parameters: {
-                //     expand: 'Order_Details'
-                // }
+                    // parameters: {
+                    //     expand: 'Order_Details'
+                    // }
             });
         },
-        isChangeable: function(SOStatus) {
-            return SOStatus === 'INP' ? true : false;
+        isChangeable: function(Status) {
+            if (
+                Status !== null &&
+                this.myView.getBindingContext() &&
+                this.myView.getBindingContext().getObject()
+            ) {
+                var oData = this.myView.getBindingContext().getObject();
+                return oData.Status === 'Open' ? true : false;
+            }
+            return false;
+
+        },
+        isReady: function(Status) {
+            if (
+                Status !== null &&
+                this.myView.getBindingContext() &&
+                this.myView.getBindingContext().getObject()
+            ) {
+                var oOrder = this.myView.getBindingContext().getObject();
+                return (Status === 'Open' && oOrder.OrderAllowance >= oOrder.OrderTotal);
+            }
+            return false;
+        },
+        allocationStateCheck: function(val) {
+            if (
+                val !== null &&
+                this.myView.getBindingContext() &&
+                this.myView.getBindingContext().getObject()
+            ) {
+                var oOrder = this.myView.getBindingContext().getObject();
+                return oOrder.OrderAllowance >= oOrder.OrderTotal ? 'Success' : 'Error';
+            }
+            return 'None';
+
         },
         itemDeletable: function(HgrLvlItemInBOM) {
             var oOrder = this.myView.getBindingContext().getObject();
@@ -158,7 +191,7 @@ sap.ui.define([
         },
         onItemDelete: function(oEvent) {
             // create dialog
-            this._oDialog = sap.ui.xmlfragment("encollab.dp.view.common.itemDeleteDialog", this);
+            this._oDialog = sap.ui.xmlfragment("encollab.dp.bb.view.itemDeleteDialog", this);
             this._oDialog.bindElement({
                 path: oEvent.getSource().getBindingContext().getPath()
             });
@@ -229,6 +262,115 @@ sap.ui.define([
                 }, this)
             });
         },
+        onUpload: function(oEvent) {
+            this._oDialog = sap.ui.xmlfragment("encollab.dp.bb.view.uploadDialog", this);
+            this.myView.addDependent(this._oDialog);
+            // this._oDialog.bindElement({
+            //     path: this.myView.getBindingContext().getPath()
+            // });
+            this._oDialog.open();
+        },
+        onUploadDialogConfirm: function(oEvent) {
+            this.onDialogCancel(oEvent);
+            this.busyDialog.open();
+            this._addUploadItems();
+
+        },
+        _addUploadItems: function() {
+            this.errorMessage('BADMAT1 Invalid!', 'Material BADMAT1 not found');
+            this.errorMessage('BADMAT2 Invalid!', 'Material BADMAT2 not found');
+
+            this.warningMessage('Material 101 has warnings', 'Material 101-Warning Material 2 has correctable issues');
+
+            this.addItem({
+                    "OrderID": 10273,
+                    "ProductName": "Good Material 1",
+                    "ProductID": 100,
+                    "UnitPrice": "12.4000",
+                    "Quantity": 5,
+                    "UOM": "Each",
+                    "Status": "Ok"
+                },
+                jQuery.proxy(function(odata, response) {
+                    this.addItem({
+                            "OrderID": 10273,
+                            "ProductName": "Warning Material 2",
+                            "ProductID": 101,
+                            "UnitPrice": "8.00",
+                            "Quantity": 2,
+                            "UOM": "Each",
+                            "Status": "Invalid"
+                        },
+                        jQuery.proxy(function(odata, response) {
+                            this.addItem({
+                                "OrderID": 10273,
+                                "ProductName": "Good Material 3",
+                                "ProductID": 102,
+                                "UnitPrice": "8.45",
+                                "Quantity": 3,
+                                "UOM": "Each",
+                                "Status": "Ok"
+                            });
+                        }, this));
+                }, this)
+            );
+
+        },
+        addItem: function(mPayload, success, error) {
+            if (!success) {
+                success = jQuery.proxy(function(odata, response) {
+                    this.busyDialog.close();
+                }, this);
+            }
+            if (!error) {
+                error = jQuery.proxy(function(oError) {
+                    this.busyDialog.close();
+                    this.gatewayError(oError);
+                }, this);
+            }
+            this.mainModel.create("/Order_Details", mPayload, {
+                success: success,
+                error: error
+            });
+        },
+
+        // var oTable = this.myView.byId('bbTable');
+        // oTable.addItem(
+        //     new ColumnListItem({
+        //         role: 'BB',
+        //         type: 'Active',
+        //         press: this.onItemPress,
+        //         cells: [
+        //             new ObjectIdentifier({
+        //                 title: 'WARNMAT1'
+        //             }),
+        //             new ObjectIdentifier({
+        //                 text: 'Warning Material 1'
+        //             }),
+        //             new sap.m.ObjectAttribute({
+        //                 text: "5 EA",
+        //                 active: true,
+        //                 press: this.onChangeItemQty
+        //             }),
+        //             new ObjectIdentifier({
+        //                 text: '$ 13.00'
+        //             }),
+        //             new ObjectIdentifier({
+        //                 text: '$ 12.00'
+        //             }),
+        //             new sap.m.ObjectAttribute({
+        //                 text: "Not Valid"
+        //             }),
+        //             new ObjectIdentifier({
+        //                 text: ' '
+        //             }),
+        //             new Button({
+        //                 icon: "sap-icon://delete",
+        //                 press: $.proxy(this.onItemDelete, this)
+        //             })
+        //         ]
+        //     }));
+        // this.warningMessage('WARNMAT1 has warnings', 'Material WARNMAT1 has correctable issues');
         onOrderDelete: function(oEvent) {
             // create dialog
             this._oDialog = sap.ui.xmlfragment("encollab.dp.view.partsOrder.orderDeleteDialog", this);
@@ -286,18 +428,6 @@ sap.ui.define([
             });
         },
         onUpdateFinished: function(oEvent) {
-            var basketTotal = 0;
-            var aItems = this.myView.byId('itemsTable').getItems();
-            for (var i = 0; i < aItems.length; i++) {
-                var oItem = aItems[i].getBindingContext().getObject();
-                var price = oItem.UnitPrice;
-                var qty = oItem.Quantity;
-                var disc = oItem.Discount;
-                var itemPrice = (price*qty)*(1-disc);
-                basketTotal = basketTotal + itemPrice;
-            }
-
-            this.myView.byId('headerId').setNumber('$'+Number(basketTotal.toFixed(2)));
 
             this.myView.setBusy(false);
         },

@@ -1,53 +1,40 @@
-<mvc:View controllerName="encollab.dp.bb.controller.Detail" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" >
-    <Page title="{i18n>bbOrderDetailTitle} {path:'OrderNr',formatter:'.formatter.Number'}" showNavButton="{device>/system/phone}" navButtonPress="onNavBack">
+<mvc:View controllerName="encollab.dp.bb.controller.Detail" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:sub="encollab.dp.bb.control">
+    <Page title="{parts:[{path:'i18n>bbOrderDetailTitle'},{path:'OrderID'}], formatter: 'jQuery.sap.formatMessage'}" showNavButton="{device>/system/phone}" navButtonPress="onNavBack">
         <headerContent>
-<!--             <core:Fragment fragmentName="encollab.dp.view.info.InfoButton" type="XML" /> -->
+            <!--             <core:Fragment fragmentName="encollab.dp.view.info.InfoButton" type="XML" /> -->
         </headerContent>
         <content>
-    <ObjectHeader responsive="true" title="{ShipName}" intro="Validity End Date Fri 25 December 2015" number="{OrderTotal}" numberUnit="{UoMDescription}" showTitleSelector="false" showMarkers="false" markFlagged="false" markFavorite="false" backgroundDesign="Translucent">
-        <attributes>
-                <ObjectAttribute title="Creation Date" text="{path:'OrderDate',formatter:'.formatter.Date'}" />
-<!--                 <ObjectAttribute title="{/#PAPQuotationHeader/CreditMemoNo/@sap:label}" text="CM1234-5" /> -->
-                <ObjectAttribute title="Invoice No" text="MyTest" active="false"/>
-        </attributes>
-        <statuses>
-            <ObjectStatus id="allocId" title="Allocation" text="$10.??" />
-        </statuses>
-    </ObjectHeader>
-    <MessageStrip text="{SalesText}" visible="{path:'SalesText',formatter:'.formatter.exists'}" type="Error" showIcon="true" showCloseButton="false">
-    </MessageStrip>
-<!--     <ObjectListItem id="headerId" title="{ShipName}" number="${path:'Order_Details',formatter:'.formatter.totalBasket'}" >
-        <firstStatus>
-            <ObjectStatus text="{ShipCity}" />
-        </firstStatus>
-        <secondStatus>
-            <ObjectStatus text="{ShipCountry}"  />
-        </secondStatus>
-        <attributes>
-            <ObjectAttribute title="Order" text="{path:'OrderID',formatter:'.formatter.Number'}" />
-            <ObjectAttribute title="Order Date" text="{path:'OrderDate',formatter:'.formatter.Date'}" />
-            <ObjectAttribute title="Validity End Date" text="{path:'RequiredDate',formatter:'.formatter.Date'}" />
-        </attributes>
-    </ObjectListItem> -->
+            <ObjectHeader id="headerId" responsive="true" title="{CustomerName}" intro="Validity End Date{path:'ValidityDate',formatter:'.formatter.Date'}" number="${OrderTotal}" showTitleSelector="false" showMarkers="false" markFlagged="false" markFavorite="false" backgroundDesign="Translucent" numberState="{path:'OrderAllowance',formatter:'.allocationStateCheck'}">
+                <attributes>
+                    <ObjectAttribute title="Creation Date" text="{path:'OrderDate',formatter:'.formatter.Date'}" />
+                    <!--                 <ObjectAttribute title="{/#PAPQuotationHeader/CreditMemoNo/@sap:label}" text="CM1234-5" /> -->
+                    <ObjectAttribute title="Invoice No" text="MyTest" active="false" />
+                </attributes>
+                <statuses>
+                    <ObjectStatus title="Status" text="{Status}" />
+                    <ObjectStatus title="Allocation" text="${OrderAllowance}" state="{path:'OrderAllowance',formatter:'.allocationStateCheck'}" />
+                </statuses>
+            </ObjectHeader>
+            <MessageStrip text="{SalesText}" visible="{path:'SalesText',formatter:'.formatter.exists'}" type="Error" showIcon="true" showCloseButton="false">
+            </MessageStrip>
             <IconTabBar>
                 <items>
                     <IconTabFilter text="{i18n>bbOrderItems}" icon="sap-icon://sales-order-item">
                         <content>
                             <Table id="itemsTable" noDataText="No data" items="{path:'Order_Details'}" updateFinished="onUpdateFinished">
-                                <!--                 <customData>
-                    <core:CustomData key="sap-ui-fastnavgroup" value="true" writeToDom="true"></core:CustomData>
-                </customData> -->
                                 <items>
-                                    <ColumnListItem type="Inactive" counter="0" role="{= ${ItemCategory} === 'TAPA' ? 'TAPA' : ''}">
-                                        <cells>
-                                            <ObjectIdentifier title="{ProductID}" text="{ProductName}" badgeNotes="false" badgePeople="false" badgeAttachments="false" titleActive="true" titlePress="onItemPress"></ObjectIdentifier>
-                                            <ObjectAttribute text="{path:'Quantity',formatter:'.formatter.Number'}" />
+                                    <sub:ColumnListItem type="Inactive" counter="0" role="{Status}">
+                                        <sub:cells>
+                                            <ObjectIdentifier title="{ProductName}" text="{ProductID}" badgeNotes="false" badgePeople="false" badgeAttachments="false" titleActive="false" titlePress="onItemPress"></ObjectIdentifier>
+                                            <ObjectAttribute text="{path:'Quantity',formatter:'.formatter.Number'} {UOM}" />
                                             <ObjectAttribute text="${path:'UnitPrice',formatter:'.formatter.currencyValue'}" />
-                                            <ObjectAttribute text="{=${Discount}*100}%" />
-                                            <ObjectNumber number="${parts:[{path:'UnitPrice'},{path:'Quantity'},{path:'Discount'}],formatter:'.formatter.calcPrice'}" ></ObjectNumber>
-                                            <Button icon="sap-icon://delete" press="onItemDelete" tooltip="Delete item" visible="{path:'HgrLvlItemInBOM',formatter:'.itemDeletable'}" />
-                                        </cells>
-                                    </ColumnListItem>
+                                            <ObjectNumber number="${parts:[{path:'UnitPrice'},{path:'Quantity'},{path:'Discount'}],formatter:'.formatter.calcPrice'}"></ObjectNumber>
+                                            <ObjectAttribute text="{Status}" />
+                                            <ObjectIdentifier text=" " />
+                                            <Button icon="sap-icon://delete" press="onItemDelete" tooltip="Delete item" visible="{path:'Status',formatter:'.isChangeable'}" />
+                                            <ObjectAttribute text="{Status}" />
+                                        </sub:cells>
+                                    </sub:ColumnListItem>
                                 </items>
                                 <columns>
                                     <Column>
@@ -62,12 +49,7 @@
                                     </Column>
                                     <Column hAlign="Center" minScreenWidth="tablet" demandPopin="true">
                                         <header>
-                                            <Label text="Unit Price" textAlign="Center"></Label>
-                                        </header>
-                                    </Column>
-                                    <Column hAlign="Right">
-                                        <header>
-                                            <Label text="Discount" textAlign="Right"></Label>
+                                            <Label text="Buy Back Price" textAlign="Center"></Label>
                                         </header>
                                     </Column>
                                     <Column hAlign="Right">
@@ -75,7 +57,17 @@
                                             <Label text="Value" textAlign="Right"></Label>
                                         </header>
                                     </Column>
-                                    <Column hAlign="Right" visible="{path:'SOStatus',formatter:'.isChangeable'}">
+                                    <Column hAlign="Right">
+                                        <header>
+                                            <Label text="Status" textAlign="Right"></Label>
+                                        </header>
+                                    </Column>
+                                    <Column hAlign="Right" visible="{path:'Status',formatter:'.isChangeable'}" width="20px">
+                                        <header>
+                                            <Button icon="sap-icon://upload" press="onUpload" />
+                                        </header>
+                                    </Column>
+                                    <Column hAlign="Right" visible="{path:'Status',formatter:'.isChangeable'}" width="20px">
                                         <header>
                                             <Button icon="sap-icon://add" press="onItemAdd" tooltip="Add item" />
                                         </header>
@@ -93,10 +85,10 @@
         </content>
         <footer>
             <Toolbar>
-<!--                 <core:Fragment fragmentName="encollab.dp.bb.view.about.MessageButton" type="XML" /> -->
+                <core:Fragment fragmentName="encollab.dp.bb.view.MessageButton" type="XML" />
                 <ToolbarSpacer/>
                 <ToolbarSpacer/>
-                <Button icon="sap-icon://paper-plane" type="Emphasized" text="Submit" press="onOrderSubmit" visible="{path:'SOStatus',formatter:'.isChangeable'}" />
+                <Button icon="sap-icon://paper-plane" type="Emphasized" text="Submit" press="onOrderSubmit" visible="{path:'Status',formatter:'.isReady'}" />
                 <Button icon="sap-icon://delete" press="onOrderDelete" visible="{path:'SOStatus',formatter:'.isChangeable'}" />
             </Toolbar>
         </footer>
