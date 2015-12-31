@@ -1,0 +1,15 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
+    <ObjectListItem title="{ShipName}" type="Navigation" number="${OrderTotal}" >
+        <firstStatus>
+            <ObjectStatus text="{ShipCity}" />
+        </firstStatus>
+        <secondStatus>
+            <ObjectStatus text="{ShipCountry}"  />
+        </secondStatus>
+        <attributes>
+            <ObjectAttribute title="Order" text="{path:'OrderID',formatter:'.formatter.Number'}" />
+            <ObjectAttribute title="Order Date" text="{path:'OrderDate',formatter:'.formatter.Date'}" />
+            <ObjectAttribute title="Validity End Date" text="{path:'RequiredDate',formatter:'.formatter.Date'}" />
+        </attributes>
+    </ObjectListItem>
+</core:FragmentDefinition>

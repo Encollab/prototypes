@@ -1,0 +1,9 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <Button
+    	id="messageButton"
+    	icon="{path:'msg>/totalMessages',formatter:'.messageButtonIcon'}"
+    	text="{path: 'msg>/totalMessages',formatter:'.messageButtonText'}"
+    	type="{path:'msg>/totalMessages',formatter:'.messageButtonType'}"
+    	press="onMessageButtonPress"
+    	visible="{= ${msg>/totalMessages} > 0 }"/>
+</core:FragmentDefinition>

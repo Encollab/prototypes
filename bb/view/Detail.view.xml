@@ -1,0 +1,104 @@
+<mvc:View controllerName="encollab.dp.bb.controller.Detail" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" >
+    <Page title="{i18n>bbOrderDetailTitle} {path:'OrderNr',formatter:'.formatter.Number'}" showNavButton="{device>/system/phone}" navButtonPress="onNavBack">
+        <headerContent>
+<!--             <core:Fragment fragmentName="encollab.dp.view.info.InfoButton" type="XML" /> -->
+        </headerContent>
+        <content>
+    <ObjectHeader responsive="true" title="{ShipName}" intro="Validity End Date Fri 25 December 2015" number="{OrderTotal}" numberUnit="{UoMDescription}" showTitleSelector="false" showMarkers="false" markFlagged="false" markFavorite="false" backgroundDesign="Translucent">
+        <attributes>
+                <ObjectAttribute title="Creation Date" text="{path:'OrderDate',formatter:'.formatter.Date'}" />
+<!--                 <ObjectAttribute title="{/#PAPQuotationHeader/CreditMemoNo/@sap:label}" text="CM1234-5" /> -->
+                <ObjectAttribute title="Invoice No" text="MyTest" active="false"/>
+        </attributes>
+        <statuses>
+            <ObjectStatus id="allocId" title="Allocation" text="$10.??" />
+        </statuses>
+    </ObjectHeader>
+    <MessageStrip text="{SalesText}" visible="{path:'SalesText',formatter:'.formatter.exists'}" type="Error" showIcon="true" showCloseButton="false">
+    </MessageStrip>
+<!--     <ObjectListItem id="headerId" title="{ShipName}" number="${path:'Order_Details',formatter:'.formatter.totalBasket'}" >
+        <firstStatus>
+            <ObjectStatus text="{ShipCity}" />
+        </firstStatus>
+        <secondStatus>
+            <ObjectStatus text="{ShipCountry}"  />
+        </secondStatus>
+        <attributes>
+            <ObjectAttribute title="Order" text="{path:'OrderID',formatter:'.formatter.Number'}" />
+            <ObjectAttribute title="Order Date" text="{path:'OrderDate',formatter:'.formatter.Date'}" />
+            <ObjectAttribute title="Validity End Date" text="{path:'RequiredDate',formatter:'.formatter.Date'}" />
+        </attributes>
+    </ObjectListItem> -->
+            <IconTabBar>
+                <items>
+                    <IconTabFilter text="{i18n>bbOrderItems}" icon="sap-icon://sales-order-item">
+                        <content>
+                            <Table id="itemsTable" noDataText="No data" items="{path:'Order_Details'}" updateFinished="onUpdateFinished">
+                                <!--                 <customData>
+                    <core:CustomData key="sap-ui-fastnavgroup" value="true" writeToDom="true"></core:CustomData>
+                </customData> -->
+                                <items>
+                                    <ColumnListItem type="Inactive" counter="0" role="{= ${ItemCategory} === 'TAPA' ? 'TAPA' : ''}">
+                                        <cells>
+                                            <ObjectIdentifier title="{ProductID}" text="{ProductName}" badgeNotes="false" badgePeople="false" badgeAttachments="false" titleActive="true" titlePress="onItemPress"></ObjectIdentifier>
+                                            <ObjectAttribute text="{path:'Quantity',formatter:'.formatter.Number'}" />
+                                            <ObjectAttribute text="${path:'UnitPrice',formatter:'.formatter.currencyValue'}" />
+                                            <ObjectAttribute text="{=${Discount}*100}%" />
+                                            <ObjectNumber number="${parts:[{path:'UnitPrice'},{path:'Quantity'},{path:'Discount'}],formatter:'.formatter.calcPrice'}" ></ObjectNumber>
+                                            <Button icon="sap-icon://delete" press="onItemDelete" tooltip="Delete item" visible="{path:'HgrLvlItemInBOM',formatter:'.itemDeletable'}" />
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                                <columns>
+                                    <Column>
+                                        <header>
+                                            <Label text="Material"></Label>
+                                        </header>
+                                    </Column>
+                                    <Column hAlign="Center" minScreenWidth="tablet" demandPopin="true">
+                                        <header>
+                                            <Label text="Qty" textAlign="Center"></Label>
+                                        </header>
+                                    </Column>
+                                    <Column hAlign="Center" minScreenWidth="tablet" demandPopin="true">
+                                        <header>
+                                            <Label text="Unit Price" textAlign="Center"></Label>
+                                        </header>
+                                    </Column>
+                                    <Column hAlign="Right">
+                                        <header>
+                                            <Label text="Discount" textAlign="Right"></Label>
+                                        </header>
+                                    </Column>
+                                    <Column hAlign="Right">
+                                        <header>
+                                            <Label text="Value" textAlign="Right"></Label>
+                                        </header>
+                                    </Column>
+                                    <Column hAlign="Right" visible="{path:'SOStatus',formatter:'.isChangeable'}">
+                                        <header>
+                                            <Button icon="sap-icon://add" press="onItemAdd" tooltip="Add item" />
+                                        </header>
+                                    </Column>
+                                </columns>
+                            </Table>
+                        </content>
+                    </IconTabFilter>
+                    <!--                     <IconTabFilter text="{i18n>orderDocFlow}" icon="sap-icon://database" visible="{= ${GrossWeight} > 0 }">
+                        <content>
+                        </content>
+                    </IconTabFilter> -->
+                </items>
+            </IconTabBar>
+        </content>
+        <footer>
+            <Toolbar>
+<!--                 <core:Fragment fragmentName="encollab.dp.bb.view.about.MessageButton" type="XML" /> -->
+                <ToolbarSpacer/>
+                <ToolbarSpacer/>
+                <Button icon="sap-icon://paper-plane" type="Emphasized" text="Submit" press="onOrderSubmit" visible="{path:'SOStatus',formatter:'.isChangeable'}" />
+                <Button icon="sap-icon://delete" press="onOrderDelete" visible="{path:'SOStatus',formatter:'.isChangeable'}" />
+            </Toolbar>
+        </footer>
+    </Page>
+</mvc:View>
