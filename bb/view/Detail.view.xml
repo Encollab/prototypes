@@ -1,5 +1,5 @@
 <mvc:View controllerName="encollab.dp.bb.controller.Detail" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:sub="encollab.dp.bb.control">
-    <Page title="{parts:[{path:'i18n>bbOrderDetailTitle'},{path:'OrderID'}], formatter: 'jQuery.sap.formatMessage'}" showNavButton="{device>/system/phone}" navButtonPress="onNavBack">
+    <Page title="{parts:[{path:'i18n>bbOrderDetailTitle'},{path:'BBOrderID'}], formatter: 'jQuery.sap.formatMessage'}" showNavButton="{device>/system/phone}" navButtonPress="onNavBack">
         <headerContent>
             <!--             <core:Fragment fragmentName="encollab.dp.view.info.InfoButton" type="XML" /> -->
         </headerContent>

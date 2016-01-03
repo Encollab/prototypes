@@ -4,7 +4,7 @@
             <ObjectStatus text="{Status}" />
         </firstStatus>
         <attributes>
-            <ObjectAttribute title="Order" text="{path:'OrderID',formatter:'.formatter.Number'}" />
+            <ObjectAttribute title="Order" text="{path:'BBOrderID',formatter:'.formatter.Number'}" />
             <ObjectAttribute title="Order Date" text="{path:'OrderDate',formatter:'.formatter.Date'}" />
             <ObjectAttribute title="Validity End Date" text="{path:'ValidityDate',formatter:'.formatter.Date'}" />
         </attributes>

@@ -283,7 +283,7 @@ sap.ui.define([
             this.warningMessage('Material 101 has warnings', 'Material 101-Warning Material 2 has correctable issues');
 
             this.addItem({
-                    "OrderID": 10273,
+                    "BBOrderID": 10273,
                     "ProductName": "Good Material 1",
                     "ProductID": 100,
                     "UnitPrice": "12.4000",
@@ -293,7 +293,7 @@ sap.ui.define([
                 },
                 jQuery.proxy(function(odata, response) {
                     this.addItem({
-                            "OrderID": 10273,
+                            "BBOrderID": 10273,
                             "ProductName": "Warning Material 2",
                             "ProductID": 101,
                             "UnitPrice": "8.00",
@@ -303,7 +303,7 @@ sap.ui.define([
                         },
                         jQuery.proxy(function(odata, response) {
                             this.addItem({
-                                "OrderID": 10273,
+                                "BBOrderID": 10273,
                                 "ProductName": "Good Material 3",
                                 "ProductID": 102,
                                 "UnitPrice": "8.45",

@@ -26,7 +26,7 @@ sap.ui.define([
 
             if (searchString.length > 0) {
                 filters = new Filter([
-                    new Filter("OrderID", FilterOperator.Contains, searchString.toUpperCase())
+                    new Filter("BBOrderID", FilterOperator.Contains, searchString.toUpperCase())
 //                    new Filter("ShipAddr_Name1", FilterOperator.Contains, searchString.toUpperCase())
                 ], false);
             } else {
