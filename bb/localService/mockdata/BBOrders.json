@@ -7,6 +7,7 @@
     "CustomerName": "Vins et alcools Chevalier1",
     "OrderAllowance": "200.00",
     "Status": "Open",
+    "StatusText": "Open",
     "SalesText": "Sample sales text"
 }, {
     "BBOrderID": 10249,
@@ -17,6 +18,7 @@
     "CustomerName": "Toms Spezialit\u00e4ten",
     "OrderAllowance": "200.00",
     "Status": "Open",
+    "StatusText": "Open",
     "SalesText": "Sample sales text"
 }, {
     "BBOrderID": 10250,
@@ -27,6 +29,7 @@
     "CustomerName": "Hanari Carnes",
     "OrderAllowance": "200.00",
     "Status": "Open",
+    "StatusText": "Open",
     "SalesText": "Sample sales text"
 }, {
     "BBOrderID": 10251,
@@ -37,6 +40,7 @@
     "CustomerName": "Victuailles en stock",
     "OrderAllowance": "200.00",
     "Status": "Open",
+    "StatusText": "Open",
     "SalesText": "Sample sales text"
 }, {
     "BBOrderID": 10252,
@@ -47,6 +51,7 @@
     "CustomerName": "Supr\u00eames d\u00e9lices",
     "OrderAllowance": "200.00",
     "Status": "Open",
+    "StatusText": "Open",
     "SalesText": "Sample sales text"
 }, {
     "BBOrderID": 10253,
@@ -57,6 +62,7 @@
     "CustomerName": "Hanari Carnes",
     "OrderAllowance": "200.00",
     "Status": "Open",
+    "StatusText": "Open",
     "SalesText": "Sample sales text"
 }, {
     "BBOrderID": 10254,
@@ -67,6 +73,7 @@
     "CustomerName": "Chop-suey Chinese",
     "OrderAllowance": "200.00",
     "Status": "Open",
+    "StatusText": "Open",
     "SalesText": "Sample sales text"
 }, {
     "BBOrderID": 10255,
@@ -77,6 +84,7 @@
     "CustomerName": "Richter Supermarkt",
     "OrderAllowance": "200.00",
     "Status": "Open",
+    "StatusText": "Open",
     "SalesText": "Sample sales text"
 }, {
     "BBOrderID": 10256,
@@ -87,6 +95,7 @@
     "CustomerName": "Wellington Importadora",
     "OrderAllowance": "200.00",
     "Status": "Open",
+    "StatusText": "Open",
     "SalesText": "Sample sales text"
 }, {
     "BBOrderID": 10257,
@@ -97,6 +106,7 @@
     "CustomerName": "HILARION-Abastos",
     "OrderAllowance": "200.00",
     "Status": "Open",
+    "StatusText": "Open",
     "SalesText": "Sample sales text"
 }, {
     "BBOrderID": 10258,
@@ -107,6 +117,7 @@
     "CustomerName": "Ernst Handel",
     "OrderAllowance": "200.00",
     "Status": "Open",
+    "StatusText": "Open",
     "SalesText": "Sample sales text"
 }, {
     "BBOrderID": 10259,
@@ -117,6 +128,7 @@
     "CustomerName": "Centro comercial Moctezuma",
     "OrderAllowance": "200.00",
     "Status": "Open",
+    "StatusText": "Open",
     "SalesText": "Sample sales text"
 }, {
     "BBOrderID": 10260,
@@ -127,6 +139,7 @@
     "CustomerName": "Ottilies K\u00e4seladen",
     "OrderAllowance": "200.00",
     "Status": "Open",
+    "StatusText": "Open",
     "SalesText": "Sample sales text"
 }, {
     "BBOrderID": 10261,
@@ -137,6 +150,7 @@
     "CustomerName": "Que Del\u00edcia",
     "OrderAllowance": "200.00",
     "Status": "Open",
+    "StatusText": "Open",
     "SalesText": "Sample sales text"
 }, {
     "BBOrderID": 10262,
@@ -147,6 +161,7 @@
     "CustomerName": "Rattlesnake Canyon Grocery",
     "OrderAllowance": "200.00",
     "Status": "Open",
+    "StatusText": "Open",
     "SalesText": "Sample sales text"
 }, {
     "BBOrderID": 10263,
@@ -157,6 +172,7 @@
     "CustomerName": "Ernst Handel",
     "OrderAllowance": "200.00",
     "Status": "Open",
+    "StatusText": "Open",
     "SalesText": "Sample sales text"
 }, {
     "BBOrderID": 10264,
@@ -167,6 +183,7 @@
     "CustomerName": "Folk och f\u00e4 HB",
     "OrderAllowance": "200.00",
     "Status": "Open",
+    "StatusText": "Open",
     "SalesText": "Sample sales text"
 }, {
     "BBOrderID": 10265,
@@ -177,6 +194,7 @@
     "CustomerName": "Blondel p\u00e8re et fils",
     "OrderAllowance": "200.00",
     "Status": "Open",
+    "StatusText": "Open",
     "SalesText": "Sample sales text"
 }, {
     "BBOrderID": 10266,
@@ -187,6 +205,7 @@
     "CustomerName": "Wartian Herkku",
     "OrderAllowance": "200.00",
     "Status": "Open",
+    "StatusText": "Open",
     "SalesText": "Sample sales text"
 }, {
     "BBOrderID": 10267,
@@ -197,6 +216,7 @@
     "CustomerName": "Frankenversand",
     "OrderAllowance": "200.00",
     "Status": "Open",
+    "StatusText": "Open",
     "SalesText": "Sample sales text"
 }, {
     "BBOrderID": 10268,
@@ -207,6 +227,7 @@
     "CustomerName": "GROSELLA-Restaurante",
     "OrderAllowance": "200.00",
     "Status": "Open",
+    "StatusText": "Open",
     "SalesText": "Sample sales text"
 }, {
     "BBOrderID": 10269,
@@ -217,6 +238,7 @@
     "CustomerName": "White Clover Markets",
     "OrderAllowance": "200.00",
     "Status": "Open",
+    "StatusText": "Open",
     "SalesText": "Sample sales text"
 }, {
     "BBOrderID": 10270,
@@ -227,6 +249,7 @@
     "CustomerName": "Wartian Herkku",
     "OrderAllowance": "200.00",
     "Status": "Open",
+    "StatusText": "Open",
     "SalesText": "Sample sales text"
 }, {
     "BBOrderID": 10271,
@@ -237,6 +260,7 @@
     "CustomerName": "Split Rail Beer & Ale",
     "OrderAllowance": "200.00",
     "Status": "Open",
+    "StatusText": "Open",
     "SalesText": "Sample sales text"
 }, {
     "BBOrderID": 10272,
@@ -247,6 +271,7 @@
     "CustomerName": "Rattlesnake Canyon Grocery",
     "OrderAllowance": "2000.00",
     "Status": "Open",
+    "StatusText": "Open",
     "SalesText": "Sample sales text"
 }, {
     "BBOrderID": 10273,
@@ -257,5 +282,6 @@
     "CustomerName": "QUICK-Stop",
     "OrderAllowance": "200.00",
     "Status": "Open",
+    "StatusText": "Open",
     "SalesText": "Sample sales text"
 }]

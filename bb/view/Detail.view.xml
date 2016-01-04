@@ -25,10 +25,10 @@
                                 <items>
                                     <sub:ColumnListItem type="Inactive" counter="0" role="{Status}">
                                         <sub:cells>
-                                            <ObjectIdentifier title="{ProductName}" text="{ProductID}" badgeNotes="false" badgePeople="false" badgeAttachments="false" titleActive="false" titlePress="onItemPress"></ObjectIdentifier>
+                                            <ObjectIdentifier title="{PartName}" text="{PartID}" badgeNotes="false" badgePeople="false" badgeAttachments="false" titleActive="false" titlePress="onItemPress"></ObjectIdentifier>
                                             <ObjectAttribute text="{path:'Quantity',formatter:'.formatter.Number'} {UOM}" />
-                                            <ObjectAttribute text="${path:'UnitPrice',formatter:'.formatter.currencyValue'}" />
-                                            <ObjectNumber number="${parts:[{path:'UnitPrice'},{path:'Quantity'},{path:'Discount'}],formatter:'.formatter.calcPrice'}"></ObjectNumber>
+                                            <ObjectAttribute text="${path:'BuyBackPrice',formatter:'.formatter.currencyValue'}" />
+                                            <ObjectNumber number="${parts:[{path:'BuyBackPrice'},{path:'Quantity'},{path:'Discount'}],formatter:'.formatter.calcPrice'}"></ObjectNumber>
                                             <ObjectAttribute text="{Status}" />
                                             <ObjectIdentifier text=" " />
                                             <Button icon="sap-icon://delete" press="onItemDelete" tooltip="Delete item" visible="{path:'Status',formatter:'.isChangeable'}" />

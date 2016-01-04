@@ -284,9 +284,9 @@ sap.ui.define([
 
             this.addItem({
                     "BBOrderID": 10273,
-                    "ProductName": "Good Material 1",
-                    "ProductID": 100,
-                    "UnitPrice": "12.4000",
+                    "PartName": "Good Material 1",
+                    "PartID": 100,
+                    "BuyBackPrice": "12.4000",
                     "Quantity": 5,
                     "UOM": "Each",
                     "Status": "Ok"
@@ -294,9 +294,9 @@ sap.ui.define([
                 jQuery.proxy(function(odata, response) {
                     this.addItem({
                             "BBOrderID": 10273,
-                            "ProductName": "Warning Material 2",
-                            "ProductID": 101,
-                            "UnitPrice": "8.00",
+                            "PartName": "Warning Material 2",
+                            "PartID": 101,
+                            "BuyBackPrice": "8.00",
                             "Quantity": 2,
                             "UOM": "Each",
                             "Status": "Invalid"
@@ -304,9 +304,9 @@ sap.ui.define([
                         jQuery.proxy(function(odata, response) {
                             this.addItem({
                                 "BBOrderID": 10273,
-                                "ProductName": "Good Material 3",
-                                "ProductID": 102,
-                                "UnitPrice": "8.45",
+                                "PartName": "Good Material 3",
+                                "PartID": 102,
+                                "BuyBackPrice": "8.45",
                                 "Quantity": 3,
                                 "UOM": "Each",
                                 "Status": "Ok"
