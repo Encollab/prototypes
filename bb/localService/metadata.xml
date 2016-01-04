@@ -1,7 +1,7 @@
 <edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
     <edmx:DataServices xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="1.0">
         <Schema Namespace="NorthwindModel" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
-            <EntityType Name="Order">
+            <EntityType Name="BBOrder">
                 <Key>
                     <PropertyRef Name="BBOrderID" />
                 </Key>
@@ -14,9 +14,9 @@
                 <Property Name="OrderAllowance" Type="Edm.Decimal" Nullable="false" Precision="19" Scale="4" />
                 <Property Name="Status" Type="Edm.String" Nullable="true" MaxLength="12" Unicode="true" />
                 <Property Name="SalesText" Type="Edm.String" Nullable="true" MaxLength="60" Unicode="true" />
-                <NavigationProperty Name="Order_Details" Relationship="NorthwindModel.FK_Order_Details_Orders" FromRole="Orders" ToRole="Order_Details" />
+                <NavigationProperty Name="BBOrder_Details" Relationship="NorthwindModel.FK_BBOrder_Details_BBOrders" FromRole="BBOrders" ToRole="BBOrder_Details" />
             </EntityType>
-            <EntityType Name="Order_Detail">
+            <EntityType Name="BBOrder_Detail">
                 <Key>
                     <PropertyRef Name="BBOrderID" />
                     <PropertyRef Name="ProductID" />
@@ -28,16 +28,16 @@
                 <Property Name="Quantity" Type="Edm.Int16" Nullable="false" />
                 <Property Name="UOM" Type="Edm.String" Nullable="false" />
                 <Property Name="Status" Type="Edm.String" Nullable="false" />
-                <NavigationProperty Name="Order" Relationship="NorthwindModel.FK_Order_Details_Orders" FromRole="Order_Details" ToRole="Orders" />
+                <NavigationProperty Name="BBOrder" Relationship="NorthwindModel.FK_BBOrder_Details_BBOrders" FromRole="BBOrder_Details" ToRole="BBOrders" />
             </EntityType>
-            <Association Name="FK_Order_Details_Orders">
-                <End Role="Orders" Type="NorthwindModel.Order" Multiplicity="1" />
-                <End Role="Order_Details" Type="NorthwindModel.Order_Detail" Multiplicity="*" />
+            <Association Name="FK_BBOrder_Details_BBOrders">
+                <End Role="BBOrders" Type="NorthwindModel.BBOrder" Multiplicity="1" />
+                <End Role="BBOrder_Details" Type="NorthwindModel.BBOrder_Detail" Multiplicity="*" />
                 <ReferentialConstraint>
-                    <Principal Role="Orders">
+                    <Principal Role="BBOrders">
                         <PropertyRef Name="BBOrderID" />
                     </Principal>
-                    <Dependent Role="Order_Details">
+                    <Dependent Role="BBOrder_Details">
                         <PropertyRef Name="BBOrderID" />
                     </Dependent>
                 </ReferentialConstraint>
@@ -45,11 +45,11 @@
         </Schema>
         <Schema Namespace="ODataWeb.Northwind.Model" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
             <EntityContainer Name="NorthwindEntities" p7:LazyLoadingEnabled="true" m:IsDefaultEntityContainer="true" xmlns:p7="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
-                <EntitySet Name="Order_Details" EntityType="NorthwindModel.Order_Detail" />
-                <EntitySet Name="Orders" EntityType="NorthwindModel.Order" />
-                <AssociationSet Name="FK_Order_Details_Orders" Association="NorthwindModel.FK_Order_Details_Orders">
-                    <End Role="Orders" EntitySet="Orders" />
-                    <End Role="Order_Details" EntitySet="Order_Details" />
+                <EntitySet Name="BBOrder_Details" EntityType="NorthwindModel.BBOrder_Detail" />
+                <EntitySet Name="BBOrders" EntityType="NorthwindModel.BBOrder" />
+                <AssociationSet Name="FK_BBOrder_Details_BBOrders" Association="NorthwindModel.FK_BBOrder_Details_BBOrders">
+                    <End Role="BBOrders" EntitySet="BBOrders" />
+                    <End Role="BBOrder_Details" EntitySet="BBOrder_Details" />
                 </AssociationSet>
             </EntityContainer>
         </Schema>

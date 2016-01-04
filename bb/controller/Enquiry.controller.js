@@ -36,7 +36,7 @@ sap.ui.define([
             }
 
             oList.bindItems({
-                path: "/Orders",
+                path: "/BBOrders",
                 // parameters: {
                 //     select: "OrderID,OrderDate,OrderTypeDesc,SOStatus,SOStatusDesc,ShipAddr_Name1,NetValue,CustomerPONr"
                 // },
