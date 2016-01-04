@@ -21,7 +21,7 @@
                 <items>
                     <IconTabFilter text="{i18n>bbOrderItems}" icon="sap-icon://sales-order-item">
                         <content>
-                            <Table id="itemsTable" noDataText="No data" items="{path:'BBOrder_Details'}" updateFinished="onUpdateFinished">
+                            <Table id="itemsTable" noDataText="No data" items="{path:'BBOrderItems'}" updateFinished="onUpdateFinished">
                                 <items>
                                     <sub:ColumnListItem type="Inactive" counter="0" role="{Status}">
                                         <sub:cells>

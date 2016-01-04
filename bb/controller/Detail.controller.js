@@ -328,7 +328,7 @@ sap.ui.define([
                     this.gatewayError(oError);
                 }, this);
             }
-            this.mainModel.create("/BBOrder_Details", mPayload, {
+            this.mainModel.create("/BBOrderItems", mPayload, {
                 success: success,
                 error: error
             });
