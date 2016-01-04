@@ -12,7 +12,8 @@
                 <Property Name="ValidityDate" Type="Edm.DateTime" Nullable="true" />
                 <Property Name="OrderTotal" Type="Edm.Decimal" Nullable="false" Precision="19" Scale="4" />
                 <Property Name="OrderAllowance" Type="Edm.Decimal" Nullable="false" Precision="19" Scale="4" />
-                <Property Name="Status" Type="Edm.String" Nullable="true" MaxLength="12" Unicode="true" />
+                <Property Name="Status" Type="Edm.String" Nullable="true" MaxLength="4" Unicode="true" />
+                <Property Name="StatusText" Type="Edm.String" Nullable="true" MaxLength="12" Unicode="true" />
                 <Property Name="SalesText" Type="Edm.String" Nullable="true" MaxLength="60" Unicode="true" />
                 <NavigationProperty Name="BBOrderItems" Relationship="NorthwindModel.FK_BBOrderItems_BBOrders" FromRole="BBOrders" ToRole="BBOrderItems" />
             </EntityType>
@@ -27,7 +28,8 @@
                 <Property Name="UnitPrice" Type="Edm.Decimal" Nullable="false" Precision="19" Scale="4" />
                 <Property Name="Quantity" Type="Edm.Int16" Nullable="false" />
                 <Property Name="UOM" Type="Edm.String" Nullable="false" />
-                <Property Name="Status" Type="Edm.String" Nullable="false" />
+                <Property Name="Status" Type="Edm.String" Nullable="true" MaxLength="4" Unicode="true" />
+                <Property Name="StatusText" Type="Edm.String" Nullable="true" MaxLength="12" Unicode="true" />
                 <NavigationProperty Name="BBOrder" Relationship="NorthwindModel.FK_BBOrderItems_BBOrders" FromRole="BBOrderItems" ToRole="BBOrders" />
             </EntityType>
             <Association Name="FK_BBOrderItems_BBOrders">
