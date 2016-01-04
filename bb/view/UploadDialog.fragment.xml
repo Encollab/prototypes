@@ -1,0 +1,16 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified">
+    <Dialog title="Upload items" contentWidth="30rem" contentHeight="6rem">
+        <content>
+            <Text text="Select file for upload" class="sapUiSmallMarginBottom" />
+            <FlexBox alignItems="Start" justifyCOntent="Center">
+                <items>
+                    <u:FileUploader id="fileUploader" name="myFileUpload" uploadUrl="upload/" width="400px" tooltip="Upload your file to the local server" uploadComplete="handleUploadComplete" />
+                </items>
+            </FlexBox>
+        </content>
+        <buttons>
+            <Button id="newTypeConfirmButton" text="{i18n>confirm}" type="Transparent" press="onUploadDialogConfirm" enabled="true"></Button>
+            <Button text="{i18n>cancel}" type="Transparent" press="onDialogCancel"></Button>
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

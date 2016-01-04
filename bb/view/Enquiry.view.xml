@@ -1,0 +1,36 @@
+<mvc:View controllerName="encollab.dp.bb.controller.Enquiry" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" displayBlock="true">
+    <Page title="{i18n>bbOrderTitle}" showNavButton="{device>/system/phone}" navButtonPress="onNavBack">
+        <headerContent>
+<!--             <core:Fragment fragmentName="encollab.dp.view.info.InfoButton" type="XML" /> -->
+        </headerContent>
+            <List
+                id="ordersList"
+                visible="true"
+                mode="SingleSelectMaster"
+                noDataText="{i18n>bbEnquiryMasterListNoDataText}"
+                select="onPress"
+                growing="true"
+                growingScrollToLoad="true" >
+            <headerToolbar>
+                <Toolbar>
+                    <Title text="{i18n>bbOrdersListTitle}" />
+                    <ToolbarSpacer/>
+                    <SearchField width="50%" search="onSearchOrders" />
+                </Toolbar>
+            </headerToolbar>
+            </List>
+        <footer>
+            <Toolbar>
+            <core:Fragment fragmentName="encollab.dp.bb.view.MessageButton" type="XML" />
+                <ToolbarSpacer/>
+                <ToolbarSpacer/>
+                <Button
+                    icon="sap-icon://create"
+                    text="{i18n>bbOrderMasterCreateButtonTooltip}"
+                    tooltip="{i18n>bbOrderMasterCreateButtonTooltip}"
+                    enabled="{path:'/Users(\'SY-UNAME\')/Authorisations/bbhop'}"
+                    press="onCreateOrder" />
+            </Toolbar>
+        </footer>
+    </Page>
+</mvc:View>
