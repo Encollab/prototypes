@@ -286,7 +286,7 @@ sap.ui.define([
                     "BBOrderID": 10273,
                     "PartName": "Good Material 1",
                     "PartID": 100,
-                    "UnitPrice": "12.4000",
+                    "BuyBackPrice": "12.4000",
                     "Quantity": 5,
                     "UOM": "Each",
                     "Status": "Ok"
@@ -296,7 +296,7 @@ sap.ui.define([
                             "BBOrderID": 10273,
                             "PartName": "Warning Material 2",
                             "PartID": 101,
-                            "UnitPrice": "8.00",
+                            "BuyBackPrice": "8.00",
                             "Quantity": 2,
                             "UOM": "Each",
                             "Status": "Invalid"
@@ -306,7 +306,7 @@ sap.ui.define([
                                 "BBOrderID": 10273,
                                 "PartName": "Good Material 3",
                                 "PartID": 102,
-                                "UnitPrice": "8.45",
+                                "BuyBackPrice": "8.45",
                                 "Quantity": 3,
                                 "UOM": "Each",
                                 "Status": "Ok"

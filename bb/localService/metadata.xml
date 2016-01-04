@@ -25,7 +25,7 @@
                 <Property Name="BBOrderID" Type="Edm.Int32" Nullable="false" />
                 <Property Name="PartID" Type="Edm.Int32" Nullable="false" />
                 <Property Name="PartName" Type="Edm.String" Nullable="false" MaxLength="40" Unicode="true" FixedLength="false" />
-                <Property Name="UnitPrice" Type="Edm.Decimal" Nullable="false" Precision="19" Scale="4" />
+                <Property Name="BuyBackPrice" Type="Edm.Decimal" Nullable="false" Precision="19" Scale="4" />
                 <Property Name="Quantity" Type="Edm.Int16" Nullable="false" />
                 <Property Name="UOM" Type="Edm.String" Nullable="false" />
                 <Property Name="Status" Type="Edm.String" Nullable="true" MaxLength="4" Unicode="true" />
