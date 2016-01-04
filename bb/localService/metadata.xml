@@ -20,11 +20,11 @@
             <EntityType Name="BBOrderItem">
                 <Key>
                     <PropertyRef Name="BBOrderID" />
-                    <PropertyRef Name="ProductID" />
+                    <PropertyRef Name="PartID" />
                 </Key>
                 <Property Name="BBOrderID" Type="Edm.Int32" Nullable="false" />
-                <Property Name="ProductID" Type="Edm.Int32" Nullable="false" />
-                <Property Name="ProductName" Type="Edm.String" Nullable="false" MaxLength="40" Unicode="true" FixedLength="false" />
+                <Property Name="PartID" Type="Edm.Int32" Nullable="false" />
+                <Property Name="PartName" Type="Edm.String" Nullable="false" MaxLength="40" Unicode="true" FixedLength="false" />
                 <Property Name="UnitPrice" Type="Edm.Decimal" Nullable="false" Precision="19" Scale="4" />
                 <Property Name="Quantity" Type="Edm.Int16" Nullable="false" />
                 <Property Name="UOM" Type="Edm.String" Nullable="false" />
