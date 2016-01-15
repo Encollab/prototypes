@@ -1,59 +1,59 @@
-<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
-    <edmx:DataServices xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="1.0">
-        <Schema Namespace="Encollab" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
-            <EntityType Name="BBOrder">
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="Encollab" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="BBOrder" m:HasStream="true" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="BBOrderID" />
                 </Key>
-                <Property Name="BBOrderID" Type="Edm.Int32" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-                <Property Name="CustomerName" Type="Edm.String" Nullable="true" MaxLength="40" Unicode="true" />
-                <Property Name="CustomerInvoice" Type="Edm.String" Nullable="true" MaxLength="12" Unicode="true" />
-                <Property Name="OrderDate" Type="Edm.DateTime" Nullable="true" />
-                <Property Name="ValidityDate" Type="Edm.DateTime" Nullable="true" />
-                <Property Name="OrderTotal" Type="Edm.Decimal" Nullable="false" Precision="19" Scale="4" />
-                <Property Name="OrderAllowance" Type="Edm.Decimal" Nullable="false" Precision="19" Scale="4" />
-                <Property Name="Status" Type="Edm.String" Nullable="true" MaxLength="4" Unicode="true" />
-                <Property Name="StatusText" Type="Edm.String" Nullable="true" MaxLength="12" Unicode="true" />
-                <Property Name="SalesText" Type="Edm.String" Nullable="true" MaxLength="60" Unicode="true" />
-                <NavigationProperty Name="BBOrderItems" Relationship="Encollab.FK_BBOrderItems_BBOrders" FromRole="BBOrders" ToRole="BBOrderItems" />
+                <Property Name="BBOrderID" Type="Edm.Int32" Nullable="false" sap:label="Order No" sap:creatable="false" sap:updatable="false" />
+                <Property Name="CustomerName" Type="Edm.String" MaxLength="40" sap:label="Customer Name" />
+                <Property Name="CustomerInvoice" Type="Edm.String" MaxLength="12" sap:label="Customer Invoice" />
+                <Property Name="OrderDate" Type="Edm.DateTime" Precision="0" sap:label="Order Date" />
+                <Property Name="ValidityDate" Type="Edm.DateTime" Precision="0" sap:label="Validity Date" />
+                <Property Name="OrderTotal" Type="Edm.Decimal" Nullable="false" Precision="19" Scale="4" sap:label="Total" />
+                <Property Name="OrderAllowance" Type="Edm.Decimal" Nullable="false" Precision="19" Scale="4" sap:label="Allowance" />
+                <Property Name="Status" Type="Edm.String" MaxLength="4" sap:label="Status" />
+                <Property Name="StatusText" Type="Edm.String" MaxLength="12" sap:label="Status Text" />
+                <Property Name="SalesText" Type="Edm.String" MaxLength="60" sap:label="Sales Text" />
+                <NavigationProperty Name="BBOrderItems" Relationship="Encollab.FK_BBOrderItems_BBOrders" FromRole="FromRole_FK_BBOrderItems_BBOrders" ToRole="ToRole_FK_BBOrderItems_BBOrders" />
             </EntityType>
-            <EntityType Name="BBOrderItem">
+            <EntityType Name="BBOrderItem" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="BBOrderID" />
                     <PropertyRef Name="PartID" />
                 </Key>
-                <Property Name="BBOrderID" Type="Edm.Int32" Nullable="false" />
-                <Property Name="PartID" Type="Edm.Int32" Nullable="false" />
-                <Property Name="PartName" Type="Edm.String" Nullable="false" MaxLength="40" Unicode="true" FixedLength="false" />
-                <Property Name="BuyBackPrice" Type="Edm.Decimal" Nullable="false" Precision="19" Scale="4" />
-                <Property Name="Quantity" Type="Edm.Int16" Nullable="false" />
-                <Property Name="UOM" Type="Edm.String" Nullable="false" />
-                <Property Name="Status" Type="Edm.String" Nullable="true" MaxLength="4" Unicode="true" />
-                <Property Name="StatusText" Type="Edm.String" Nullable="true" MaxLength="12" Unicode="true" />
-                <NavigationProperty Name="BBOrder" Relationship="Encollab.FK_BBOrderItems_BBOrders" FromRole="BBOrderItems" ToRole="BBOrders" />
+                <Property Name="BBOrderID" Type="Edm.Int32" Nullable="false" sap:label="Order No" />
+                <Property Name="PartID" Type="Edm.Int32" Nullable="false" sap:label="Part No" />
+                <Property Name="PartName" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Part" />
+                <Property Name="BuyBackPrice" Type="Edm.Decimal" Nullable="false" Precision="19" Scale="4" sap:label="Buy Back Price" />
+                <Property Name="Quantity" Type="Edm.Int16" Nullable="false" sap:label="Quantity" />
+                <Property Name="UOM" Type="Edm.String" Nullable="false" sap:label="UoM" />
+                <Property Name="Status" Type="Edm.String" MaxLength="4" sap:label="Status" />
+                <Property Name="StatusText" Type="Edm.String" MaxLength="12" sap:label="Status Text" />
+                <NavigationProperty Name="BBOrder" Relationship="Encollab.FK_BBOrderItems_BBOrders" FromRole="ToRole_FK_BBOrderItems_BBOrders" ToRole="FromRole_FK_BBOrderItems_BBOrders" />
             </EntityType>
-            <Association Name="FK_BBOrderItems_BBOrders">
-                <End Role="BBOrders" Type="Encollab.BBOrder" Multiplicity="1" />
-                <End Role="BBOrderItems" Type="Encollab.BBOrderItem" Multiplicity="*" />
+            <Association Name="FK_BBOrderItems_BBOrders" sap:content-version="1">
+                <End Type="Encollab.BBOrder" Multiplicity="1" Role="FromRole_FK_BBOrderItems_BBOrders" />
+                <End Type="Encollab.BBOrderItem" Multiplicity="*" Role="ToRole_FK_BBOrderItems_BBOrders" />
                 <ReferentialConstraint>
-                    <Principal Role="BBOrders">
+                    <Principal Role="FromRole_FK_BBOrderItems_BBOrders">
                         <PropertyRef Name="BBOrderID" />
                     </Principal>
-                    <Dependent Role="BBOrderItems">
+                    <Dependent Role="ToRole_FK_BBOrderItems_BBOrders">
                         <PropertyRef Name="BBOrderID" />
                     </Dependent>
                 </ReferentialConstraint>
             </Association>
-        </Schema>
-        <Schema Namespace="ODataWeb.Northwind.Model" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
-            <EntityContainer Name="NorthwindEntities" p7:LazyLoadingEnabled="true" m:IsDefaultEntityContainer="true" xmlns:p7="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
-                <EntitySet Name="BBOrderItems" EntityType="Encollab.BBOrderItem" />
-                <EntitySet Name="BBOrders" EntityType="Encollab.BBOrder" />
-                <AssociationSet Name="FK_BBOrderItems_BBOrders" Association="Encollab.FK_BBOrderItems_BBOrders">
-                    <End Role="BBOrders" EntitySet="BBOrders" />
-                    <End Role="BBOrderItems" EntitySet="BBOrderItems" />
+            <EntityContainer Name="Encollab_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="BBOrderItems" EntityType="Encollab.BBOrderItem" sap:content-version="1" />
+                <EntitySet Name="BBOrders" EntityType="Encollab.BBOrder" sap:content-version="1" />
+                <AssociationSet Name="FK_BBOrderItems_BBOrders_AssocSet" Association="Encollab.FK_BBOrderItems_BBOrders" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="BBOrders" Role="FromRole_FK_BBOrderItems_BBOrders" />
+                    <End EntitySet="BBOrderItems" Role="ToRole_FK_BBOrderItems_BBOrders" />
                 </AssociationSet>
             </EntityContainer>
+            <atom:link rel="self" href="http://mwsapdev2k8.mayfairs.local:8010/sap/opu/odata/SAP/ZBBPROTO_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom" />
+            <atom:link rel="latest-version" href="http://mwsapdev2k8.mayfairs.local:8010/sap/opu/odata/SAP/ZBBPROTO_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom" />
         </Schema>
     </edmx:DataServices>
 </edmx:Edmx>

@@ -1,0 +1,59 @@
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <edmx:DataServices xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="1.0">
+        <Schema Namespace="Encollab" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="BBOrder">
+                <Key>
+                    <PropertyRef Name="BBOrderID" />
+                </Key>
+                <Property Name="BBOrderID" Type="Edm.Int32" Nullable="false" p8:StoreGeneratedPattern="Identity" xmlns:p8="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+                <Property Name="CustomerName" Type="Edm.String" Nullable="true" MaxLength="40" Unicode="true" />
+                <Property Name="CustomerInvoice" Type="Edm.String" Nullable="true" MaxLength="12" Unicode="true" />
+                <Property Name="OrderDate" Type="Edm.DateTime" Nullable="true" />
+                <Property Name="ValidityDate" Type="Edm.DateTime" Nullable="true" />
+                <Property Name="OrderTotal" Type="Edm.Decimal" Nullable="false" Precision="19" Scale="4" />
+                <Property Name="OrderAllowance" Type="Edm.Decimal" Nullable="false" Precision="19" Scale="4" />
+                <Property Name="Status" Type="Edm.String" Nullable="true" MaxLength="4" Unicode="true" />
+                <Property Name="StatusText" Type="Edm.String" Nullable="true" MaxLength="12" Unicode="true" />
+                <Property Name="SalesText" Type="Edm.String" Nullable="true" MaxLength="60" Unicode="true" />
+                <NavigationProperty Name="BBOrderItems" Relationship="Encollab.FK_BBOrderItems_BBOrders" FromRole="BBOrders" ToRole="BBOrderItems" />
+            </EntityType>
+            <EntityType Name="BBOrderItem">
+                <Key>
+                    <PropertyRef Name="BBOrderID" />
+                    <PropertyRef Name="PartID" />
+                </Key>
+                <Property Name="BBOrderID" Type="Edm.Int32" Nullable="false" />
+                <Property Name="PartID" Type="Edm.Int32" Nullable="false" />
+                <Property Name="PartName" Type="Edm.String" Nullable="false" MaxLength="40" Unicode="true" FixedLength="false" />
+                <Property Name="BuyBackPrice" Type="Edm.Decimal" Nullable="false" Precision="19" Scale="4" />
+                <Property Name="Quantity" Type="Edm.Int16" Nullable="false" />
+                <Property Name="UOM" Type="Edm.String" Nullable="false" />
+                <Property Name="Status" Type="Edm.String" Nullable="true" MaxLength="4" Unicode="true" />
+                <Property Name="StatusText" Type="Edm.String" Nullable="true" MaxLength="12" Unicode="true" />
+                <NavigationProperty Name="BBOrder" Relationship="Encollab.FK_BBOrderItems_BBOrders" FromRole="BBOrderItems" ToRole="BBOrders" />
+            </EntityType>
+            <Association Name="FK_BBOrderItems_BBOrders">
+                <End Role="BBOrders" Type="Encollab.BBOrder" Multiplicity="1" />
+                <End Role="BBOrderItems" Type="Encollab.BBOrderItem" Multiplicity="*" />
+                <ReferentialConstraint>
+                    <Principal Role="BBOrders">
+                        <PropertyRef Name="BBOrderID" />
+                    </Principal>
+                    <Dependent Role="BBOrderItems">
+                        <PropertyRef Name="BBOrderID" />
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+        </Schema>
+        <Schema Namespace="ODataWeb.Northwind.Model" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityContainer Name="NorthwindEntities" p7:LazyLoadingEnabled="true" m:IsDefaultEntityContainer="true" xmlns:p7="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+                <EntitySet Name="BBOrderItems" EntityType="Encollab.BBOrderItem" />
+                <EntitySet Name="BBOrders" EntityType="Encollab.BBOrder" />
+                <AssociationSet Name="FK_BBOrderItems_BBOrders" Association="Encollab.FK_BBOrderItems_BBOrders">
+                    <End Role="BBOrders" EntitySet="BBOrders" />
+                    <End Role="BBOrderItems" EntitySet="BBOrderItems" />
+                </AssociationSet>
+            </EntityContainer>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
